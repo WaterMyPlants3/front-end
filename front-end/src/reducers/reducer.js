@@ -15,7 +15,7 @@ import {
   LOGIN_RESOLVED,
   RESOLVE_PLANT_START,
   RESOLVE_PLANT_SUCCESS,
-  RESOLVE_PLANT_FAIL,
+  //   RESOLVE_PLANT_FAIL,
   CREATE_START,
   CREATE_SUCCESS,
   CREATE_FAIL,
@@ -40,12 +40,12 @@ const initialState = {
   error: null,
   users: [],
   user: {
-    user_id: ""
+    username: ""
   },
   plants: []
 };
 
-const reducers = (state = initialState, action) => {
+export const reducers = (state = initialState, action) => {
   switch (action.type) {
     case FETCH_DATA_START:
       return {
@@ -151,7 +151,7 @@ const reducers = (state = initialState, action) => {
         isLoggedIn: true,
         token: action.token,
         id: action.id,
-        user_id: action.user_id,
+        username: action.username,
         status: action.status,
         error: action.message
       };
@@ -194,7 +194,6 @@ const reducers = (state = initialState, action) => {
         isSigningUp: false,
         error: action.payload,
         status: action.status
-        // user: action.user
       };
     }
 
@@ -233,11 +232,11 @@ const reducers = (state = initialState, action) => {
         plants: [...state.plant, action.payload]
       };
 
-    case RESOLVE_PLANT_FAIL:
-      return {
-        ...state,
-        error: action.payload
-      };
+    // case RESOLVE_PLANT_FAIL:
+    //   return {
+    //     ...state,
+    //     error: action.payload
+    //   };
 
     case GET_USER:
       return {

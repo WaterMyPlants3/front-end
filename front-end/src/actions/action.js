@@ -47,7 +47,7 @@ export const login = credentials => dispatch => {
         localStorage.setItem("userToken", res.data.token);
         console.log(res.data);
         console.log(`Success 1: ${res.data.token}.`);
-        localStorage.setItem("userId", res.data.userid);
+        localStorage.setItem("username", res.data.username);
         axios.create({
           "Content-Type": "application/json",
           headers: {
@@ -94,7 +94,7 @@ export const GET_USER_FAIL = "GET_USER_FAIL";
 
 export const getUser = () => dispatch => {
   axiosWithAuth()
-    .get(`${API}/api/users/${localStorage.getItem("userId")}`)
+    .get(`${API}/api/users/${localStorage.getItem("username")}`)
     .then(res => {
       console.log(res.data);
       dispatch({ type: GET_USER, payload: res.data });
