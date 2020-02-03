@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import { ButtonStyling } from "./AddPlantForm";
+import { ButtonStyling } from "./styled/formStyled";
 
 const AddPlantContainer = styled.div`
   display: flex;
