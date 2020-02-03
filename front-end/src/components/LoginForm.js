@@ -4,7 +4,7 @@ import * as Yup from 'yup';
 import styled from 'styled-components';
 
 const InputDiv = styled.div`
-  width: 30%;
+  width: 80%;
   margin: 1% auto;
   display: flex;
   flex-direction: column;
@@ -13,7 +13,7 @@ const InputDiv = styled.div`
 const LoginButton = styled.button`
   margin: 1%;
   border-radius: 15px;
-  width: 10%;
+  width: 30%;
   background: white;
   color: green;
   &:hover {
@@ -24,7 +24,6 @@ const LoginButton = styled.button`
 
 const InputLabel = styled.label`
   text-align: start;
-  font-size: 1.2rem;
   color: green;
 `;
 
