@@ -12,11 +12,20 @@ const InputDiv = styled.div`
 
 const LoginButton = styled.button`
   margin: 1%;
+  border-radius: 15px;
+  width: 10%;
+  background: white;
+  color: green;
+  &:hover {
+    background: green;
+    color: white;
+  }
 `;
 
 const InputLabel = styled.label`
   text-align: start;
   font-size: 1.2rem;
+  color: green;
 `;
 
 const ErrorMessage = styled.div`
