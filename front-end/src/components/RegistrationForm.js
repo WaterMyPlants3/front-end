@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Form, Button } from 'reactstrap';
 import { useForm } from 'react-hook-form';
 import * as Yup from 'yup';
 
@@ -15,7 +16,8 @@ const ValidationSchema = Yup.object().shape({
   phonenumber: Yup.string()
   .required('Phone number required'),
 
-  email: Yup.email()
+  email: Yup.string()
+  .email()
   .required('Email address is required'),
 
   password: Yup.string()
@@ -28,9 +30,9 @@ const RegistrationForm = () => {
   const onSubmit = values => { console.log(values) };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <Form onSubmit={handleSubmit(onSubmit)}>
       <div>
-        <label htmlFor="first_name">Name</label>
+        <label htmlFor="first_name">Name</label>s
         <input id="first_name" name="first_name" type="text" ref={register} />
         {errors.first_name && <span>{errors.first_name.message}</span>}
       </div>
@@ -59,8 +61,8 @@ const RegistrationForm = () => {
         {errors.password && <span>{errors.password.message}</span>}
       </div>
 
-      <button type="submit">Create Account</button>
-    </form>
+      <Button type="submit">Create Account</Button>
+    </Form>
   )
 };
 
