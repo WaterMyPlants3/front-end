@@ -1,27 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import LoginForm from './LoginForm';
-import styled from 'styled-components';
-
-const LoginBox = styled.div`
-  width: 40%;
-  margin: 2% auto;
-  padding: 1%;
-  border: 1px solid black;
-  border-radius: 25px;
-  box-shadow: 5px 5px 5px black;
-`;
-
-const AppTitle = styled.h1`
-  color: green;
-  margin: 1%;
-`;
-
-const AppLogin = styled.h3`
-  color: green;
-  margin: 1%;
-  font-size: 1.6rem;
-`;
+import { LoginBox, AppTitle, AppLogin } from './StyledComponents';
 
 const LoginPage = () => {
   return (
