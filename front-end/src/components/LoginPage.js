@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import LoginForm from './LoginForm';
-import { LoginBox, AppTitle, AppLogin } from './StyledComponents';
+import { LoginBox, AppTitle, AppLogin } from './StyledComponents_LoginForm';
 
 const LoginPage = () => {
   return (

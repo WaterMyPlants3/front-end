@@ -1,7 +1,7 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import * as Yup from 'yup';
-import { InputDiv, InputLabel, ErrorMessage, LoginButton } from './StyledComponents';
+import { InputDiv, InputLabel, ErrorMessage, LoginButton } from './StyledComponents_LoginForm';
 
 const ValidationSchema = Yup.object().shape({
   username: Yup.string().required('Username is required'),
