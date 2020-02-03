@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import styled from "styled-components";
+
 import {
   ButtonStyling,
   AddPlantContainer,
   InputContainer,
   RowOneStyling,
   ButtonContainer
-} from "./styled/formStyled";
+} from "../styled/formStyled";
 
 const AddPlantForm = props => {
   const addNewPlant = props.addNewPlant;

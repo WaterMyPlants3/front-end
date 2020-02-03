@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import NavBar from "./NavBar";
-import AddPlantForm from "./AddPlantForm";
+import NavBar from "./components/NavBar";
+import AddPlantForm from "./components/AddPlantForm";
 
 import "./App.css";
 
@@ -41,7 +41,7 @@ function App() {
         <Switch>
           <Route path="/login" />
           <Route exact path="/" />
-          <Route path="/regiter" />
+          <Route path="/register" />
           <Route
             path="/plants"
             render={props => (

@@ -1,6 +1,6 @@
 import React from "react";
 
-const Plants = props => {
+const PlantsCard = props => {
   return (
     <div className="plant-list">
       {props.plantd.map(plant => (
@@ -14,4 +14,4 @@ const Plants = props => {
     </div>
   );
 };
-export default Plants;
+export default PlantsCard;

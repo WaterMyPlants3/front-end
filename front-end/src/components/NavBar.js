@@ -20,6 +20,8 @@ const NavBar = () => {
   let plants = useRef(null);
   let login = useRef(null);
 
+  console.log("this ref", home.current);
+
   function scaleUp() {
     gsap.to(home, 1, {
       scale: 1.2,
