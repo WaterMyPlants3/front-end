@@ -1,21 +1,32 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import * as Yup from 'yup';
-import { Form, FormGroup, Label, Input, Button } from 'reactstrap';
+
+const ValidationSchema = Yup.object().shape({
+  username: Yup.string().required('Username is required'),
+  password: Yup.string().required('Password is required')
+});
 
 const LoginForm = () => {
+  const { register, handleSubmit, errors } = useForm({ validationSchema: ValidationSchema });
+  const onSubmit = data => { console.log(data) };
+
   return (
-    <Form>
-      <FormGroup>
-        <Label for="username">Username</Label>
-        <Input id="username" type="text" name="username" />
-      </FormGroup>
-      <FormGroup>
-        <Label for="password">Password</Label>
-        <Input id="password" type="password" name="password" />
-      </FormGroup>
-      <Button>Login</Button>
-    </Form>
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <div>
+        <label htmlFor="username">Username</label>
+        <input id="username" name="username" type="text" ref={register} />
+        {errors.username && <span>{errors.username.message}</span>}
+      </div>
+
+      <div>
+        <label htmlFor="password">Password</label>
+        <input id="password" name="password" type="password" ref={register} />
+        {errors.password && <span>{errors.password.message}</span>}
+      </div>
+
+      <button type="submit">Login</button>
+    </form>
   )
 };
 
