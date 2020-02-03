@@ -6,7 +6,7 @@ const LoginPage = () => {
   return (
     <div>
       <LoginForm />
-      <Link to="/">Create an account</Link>
+      <Link className="sign_up_link" to="/">Create an account</Link>
     </div>
   );
 };
