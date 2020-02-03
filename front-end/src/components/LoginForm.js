@@ -1,6 +1,29 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import * as Yup from 'yup';
+import styled from 'styled-components';
+
+const InputDiv = styled.div`
+  width: 30%;
+  margin: 1% auto;
+  display: flex;
+  flex-direction: column;
+`;
+
+const LoginButton = styled.button`
+  margin: 1%;
+`;
+
+const InputLabel = styled.label`
+  text-align: start;
+  font-size: 1.2rem;
+`;
+
+const ErrorMessage = styled.div`
+  color: red;
+  font-size: .8rem;
+  margin-top: 1%;
+`;
 
 const ValidationSchema = Yup.object().shape({
   username: Yup.string().required('Username is required'),
@@ -9,23 +32,23 @@ const ValidationSchema = Yup.object().shape({
 
 const LoginForm = () => {
   const { register, handleSubmit, errors } = useForm({ validationSchema: ValidationSchema });
-  const onSubmit = data => { console.log(data) };
+  const onSubmit = data => { alert(JSON.stringify(data)); };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <div>
-        <label htmlFor="username">Username</label>
+      <InputDiv>
+        <InputLabel htmlFor="username">Username</InputLabel>
         <input id="username" name="username" type="text" ref={register} />
-        {errors.username && <span>{errors.username.message}</span>}
-      </div>
+        {errors.username && <ErrorMessage>{errors.username.message}</ErrorMessage>}
+      </InputDiv>
 
-      <div>
-        <label htmlFor="password">Password</label>
+      <InputDiv>
+        <InputLabel htmlFor="password">Password</InputLabel>
         <input id="password" name="password" type="password" ref={register} />
-        {errors.password && <span>{errors.password.message}</span>}
-      </div>
+        {errors.password && <ErrorMessage>{errors.password.message}</ErrorMessage>}
+      </InputDiv>
 
-      <button type="submit">Login</button>
+      <LoginButton type="submit">Login</LoginButton>
     </form>
   )
 };
