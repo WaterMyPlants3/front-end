@@ -35,9 +35,6 @@ const PlantList = (props) => {
         <PlantCard key={props.plant.id} plantToEdit={props.plantToEdit} plant={props.plant} />
       </ListStyle>
       <AddPlantForm />
-
-      <Route path="/plants/:plantid" render={props => (
-        <UpdatePlantForm {...props} editPlant={props.editPlant} name={props.plant.name} nickname={props.plant.nickname} species={props.plant.species} h2ofrequency={props.plant.h2ofrequency} />)} />
     </section>
   );
 };

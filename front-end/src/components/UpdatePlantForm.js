@@ -55,10 +55,10 @@ const UpdatePlantForm = (props) => {
 
   useEffect(() => {
     setPlant({
-      name: props.name,
-      nickname: props.nickname,
-      species: props.species,
-      h2oFrequency: props.h2oFrequency
+      name: props.plant.name,
+      nickname: props.plant.nickname,
+      species: props.plant.species,
+      h2oFrequency: props.plant.h2oFrequency
     })
   }, [props.editPlant])
 
@@ -82,7 +82,7 @@ const UpdatePlantForm = (props) => {
             type="text"
             name="name"
             placeholder="name"
-            value={plant.name}
+            value={props.plant.name}
             onChange={handleChange}
             ref={edit}
           />
@@ -92,7 +92,7 @@ const UpdatePlantForm = (props) => {
             type="text"
             name="nickname"
             placeholder="nickname"
-            value={plant.nickname}
+            value={props.plant.nickname}
             onChange={handleChange}
             ref={edit}
           />
@@ -102,7 +102,7 @@ const UpdatePlantForm = (props) => {
             type="text"
             name="species"
             placeholder="species"
-            value={plant.species}
+            value={props.plant.species}
             onChange={handleChange}
             ref={edit}
           />
@@ -112,7 +112,7 @@ const UpdatePlantForm = (props) => {
             type="text"
             name="h2ofrequency"
             placeholder="h2oFrequency"
-            value={plant.h2oFrequency}
+            value={props.plant.h2oFrequency}
             onChange={handleChange}
             ref={edit}
           />
