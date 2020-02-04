@@ -1,6 +1,17 @@
 import React from "react";
+import { useHistory } from 'react-router-dom';
+
 
 const PlantCard = props => {
+
+
+  const history = useHistory();
+
+  function edit() {
+    history.push(`/plants/${props.plantID}`);
+  };
+
+
   return (
     <div className="plant-list">
       {props.plant.map(plant => (
@@ -8,6 +19,7 @@ const PlantCard = props => {
           <h3>{plant.nickname}</h3>
           <h3>{plant.species}</h3>
           <h3>{plant.h2oFrequency}</h3>
+          <button onClick={edit}>Edit</button>
         </div>
       ))}
     </div>
