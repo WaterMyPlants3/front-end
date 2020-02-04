@@ -1,18 +1,9 @@
-
-
-
-
-
-
 import React, { useState } from "react";
-
-import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import NavBar from "./components/NavBar";
 import AddPlantForm from "./components/AddPlantForm";
 
 import "./App.css";
-
 
 function App() {
   const [plant, setPlant] = useState([
@@ -45,7 +36,6 @@ function App() {
 
   return (
     <div className="App">
-
       <Router>
         <NavBar />
         <Switch>
@@ -61,7 +51,6 @@ function App() {
         </Switch>
         <AddPlantForm />
       </Router>
-
     </div>
   );
 }
