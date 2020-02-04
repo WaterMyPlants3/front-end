@@ -3,6 +3,7 @@ import styled from "styled-components";
 import AddPlantForm from "./AddPlantForm";
 import PlantCard from "./PlantCard";
 import SearchBar from "./SearchBar";
+import { axiosWithAuth } from "../utils/axiosWithAuth";
 
 const ListStyle = styled.div`
   display: grid;
@@ -19,7 +20,7 @@ const ListStyle = styled.div`
 const PlantList = (props) => {
   const [input, setInput] = useState("");
 
-  // Add use Effect with axiosWithAuth here:
+  // Add use Effect with axiosWithAuth here to filter data:
 
   const handleInputChange = event => {
     event.preventDefault();

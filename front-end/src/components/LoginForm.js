@@ -1,34 +1,90 @@
-import React from 'react';
-import { useForm } from 'react-hook-form';
-import * as Yup from 'yup';
-import { InputDiv, InputLabel, ErrorMessage, LoginButton } from '../styled/StyledComponents_LoginForm';
+import React, { useState } from "react";
+import axios from "axios";
+import { useForm } from "react-hook-form";
+import * as Yup from "yup";
+import {
+  InputDiv,
+  InputLabel,
+  ErrorMessage,
+  LoginButton
+} from "../styled/StyledComponents_LoginForm";
+import { axiosWithAuth } from "../utils/axiosWithAuth";
 
 const ValidationSchema = Yup.object().shape({
-  username: Yup.string().required('Username is required'),
-  password: Yup.string().required('Password is required')
+  username: Yup.string().required("Username is required"),
+  password: Yup.string().required("Password is required")
 });
 
 const LoginForm = () => {
-  const { register, handleSubmit, errors, reset } = useForm({ validationSchema: ValidationSchema });
-  const onSubmit = (data, event) => { event.target.reset() };
+  const [values, setValues] = useState({
+    username: "",
+    password: ""
+  });
+
+  const { register, handleSubmit, errors, getValues, reset } = useForm({
+    validationSchema: ValidationSchema
+  });
+
+  const onSubmit = event => {
+    axiosWithAuth()
+      .post(
+        "api/auth/login",
+        `grant_type=password&username=${values.username}&password=${values.password}`
+      )
+      .then(res => {
+        console.log(res);
+        localStorage.setItem("token", res.data.access_token);
+        // props.history.push("/plants");
+      })
+      .catch(err => console.log(err));
+  };
+
+  // const onSubmit = (data, event) => {
+  //   event.target.reset();
+  // };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <InputDiv>
         <InputLabel htmlFor="username">Username</InputLabel>
-        <input id="username" name="username" type="text" ref={register} />
-        {errors.username && <ErrorMessage>{errors.username.message}</ErrorMessage>}
+        <input
+          id="username"
+          name="username"
+          type="text"
+          value={values.username}
+          ref={register}
+        />
+        {errors.username && (
+          <ErrorMessage>{errors.username.message}</ErrorMessage>
+        )}
       </InputDiv>
 
       <InputDiv>
         <InputLabel htmlFor="password">Password</InputLabel>
-        <input id="password" name="password" type="password" ref={register} />
-        {errors.password && <ErrorMessage>{errors.password.message}</ErrorMessage>}
+        <input
+          id="password"
+          name="password"
+          type="password"
+          value={values.password}
+          ref={register}
+        />
+        {errors.password && (
+          <ErrorMessage>{errors.password.message}</ErrorMessage>
+        )}
       </InputDiv>
 
-      <LoginButton type="submit">Login</LoginButton>
+      <LoginButton
+        onClick={() => {
+          const values = getValues();
+          setValues({ ...values, values });
+          console.log("values", values);
+        }}
+        type="submit"
+      >
+        Login
+      </LoginButton>
     </form>
-  )
+  );
 };
 
 export default LoginForm;
