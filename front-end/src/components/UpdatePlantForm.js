@@ -10,11 +10,31 @@ import {
   ButtonContainer
 } from "../styled/formStyled";
 
+const ValidationSchema = Yup.object().shape({
+  name: Yup.string()
+    .min(3, 'Name must be at least 3 characters long')
+    .max(30, 'Name must be less than 30 characters long')
+    .required('Name is required'),
+  nickname: Yup.string()
+    .min(3, 'Nickname must be at least 3 characters long')
+    .max(30, 'Nickname must be less than 30 characters long')
+    .required('Nickname is required'),
+  species: Yup.string()
+    .required('Species is required'),
+  h2oFrequency: Yup.string()
+    .min(1, 'Water frequency must be greater than zero')
+    .required('Water frequency is required')
+});
+
 const UpdatePlantForm = () => {
+  const { edit, handleSubmit, errors } = useForm({ validationSchema: ValidationSchema });
+  const onSubmit = (data, event) => { // Need to add in a save and return to home page option
+   };
+
   return (
     <AddPlantContainer>
       <InputContainer>
-        <form>
+        <form onSubmit={handleSubmit(onSubmit)}>
           <RowOneStyling
             id="name"
             type="text"
@@ -22,7 +42,9 @@ const UpdatePlantForm = () => {
             placeholder="name"
             value={newPlant.name}
             onChange={handleChanges}
+            ref={edit}
           />
+          {errors.name && <span>{errors.name.message}</span>}
           <RowOneStyling
             id="nickname"
             type="text"
@@ -30,7 +52,9 @@ const UpdatePlantForm = () => {
             placeholder="nickname"
             value={newPlant.nickname}
             onChange={handleChanges}
+            ref={edit}
           />
+          {errors.nickname && <span>{errors.nickname.message}</span>}
           <RowOneStyling
             id="species"
             type="text"
@@ -38,7 +62,9 @@ const UpdatePlantForm = () => {
             placeholder="species"
             value={newPlant.species}
             onChange={handleChanges}
+            ref={edit}
           />
+          {errors.species && <span>{errors.species.message}</span>}
           <RowOneStyling
             id="h2oFrequency"
             type="text"
@@ -46,10 +72,12 @@ const UpdatePlantForm = () => {
             placeholder="h2oFrequency"
             value={newPlant.h2oFrequency}
             onChange={handleChanges}
+            ref={edit}
           />
+          {errors.h2oFrequency && <span>{errors.h2oFrequency.message}</span>}
 
           <ButtonContainer>
-            <ButtonStyling>Add new plant</ButtonStyling>
+            <ButtonStyling>Update Plant</ButtonStyling>
           </ButtonContainer>
         </form>
       </InputContainer>
