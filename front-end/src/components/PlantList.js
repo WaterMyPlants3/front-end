@@ -17,7 +17,7 @@ const ListStyle = styled.div`
   margin: 3%;
 `;
 
-const PlantList = () => {
+const PlantList = (props) => {
   const [input, setInput] = useState("");
 
   // Add use Effect with axiosWithAuth here to filter data:
@@ -26,15 +26,14 @@ const PlantList = () => {
     event.preventDefault();
     setInput(event.target.value);
   };
+
   return (
     <section className="plants-list">
       <SearchBar handleInputChange={handleInputChange} />
       <ListStyle>
-        {plants.map((plant, index) => {
-          return <PlantCard key={index} name={plant.name} />;
-        })}
+        <PlantCard key={props.plant.id} plantToEdit={props.plantToEdit} plant={props.plant} />
       </ListStyle>
-      <AddPlantForm />
+      <AddPlantForm addNewPlant={props.addNewPlant} />
     </section>
   );
 };
