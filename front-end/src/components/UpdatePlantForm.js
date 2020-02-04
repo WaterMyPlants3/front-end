@@ -9,6 +9,7 @@ import {
   RowOneStyling,
   ButtonContainer
 } from "../styled/formStyled";
+import { useParams } from "react-router-dom";
 
 const ValidationSchema = Yup.object().shape({
   name: Yup.string()
@@ -26,9 +27,23 @@ const ValidationSchema = Yup.object().shape({
     .required('Water frequency is required')
 });
 
-const UpdatePlantForm = () => {
+const UpdatePlantForm = (props) => {
   const { edit, handleSubmit, errors } = useForm({ validationSchema: ValidationSchema });
   const onSubmit = (values) => { console.log(values) };
+
+  const [plant, setPlant] = useState();
+  const plantID = useParams();
+
+  useEffect(() => {
+    axios
+        .get(`http://localhost:3000/plants/${id}`)
+        .then(response => {
+          setPlant(response.data);
+        })
+        .catch(error => {
+          console.error(error);
+        });
+  }, [plantID])
 
   return (
     <AddPlantContainer>
