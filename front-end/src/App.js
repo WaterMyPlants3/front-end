@@ -62,7 +62,6 @@ function App() {
       <Router>
         <NavBar />
         <Switch>
-          <UpdatePlantForm editPlant={editPlant} plant={plant}  />
           <Route path="/login" component={LoginPage} />
           <Route path="/plants" render={props => (
             <PlantList {...props} plant={plant} plantToEdit={plantToEdit} editPlant={editPlant} />
