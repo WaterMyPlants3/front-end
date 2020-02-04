@@ -24,14 +24,13 @@ const ValidationSchema = Yup.object().shape({
   species: Yup.string()
     .required('Species is required'),
   h2oFrequency: Yup.string()
-    .min(1, 'Water frequency must be greater than zero')
     .required('Water frequency is required')
 });
 
 const UpdatePlantForm = (props) => {
-  const { edit, handleSubmit, errors } = useForm({ validationSchema: ValidationSchema, mode: "onChange" });
-  const onSubmit = (event) => { 
-    console.log(event)
+  const { register, handleSubmit, errors } = useForm({ validationSchema:ValidationSchema });
+  const onSubmit = (data) => { 
+    console.log(data)
    };
 
   const [plant, setPlant] = useState({
@@ -84,9 +83,9 @@ const UpdatePlantForm = (props) => {
             placeholder="name"
             value={props.plant.name}
             onChange={handleChange}
-            ref={edit}
+            ref={register}
           />
-          {errors.name && <span>{errors.name.message}</span>}
+          {errors.name ? (<span>{errors.name.message}</span>) : null }
           <RowOneStyling
             id="nickname"
             type="text"
@@ -94,7 +93,7 @@ const UpdatePlantForm = (props) => {
             placeholder="nickname"
             value={props.plant.nickname}
             onChange={handleChange}
-            ref={edit}
+            ref={register}
           />
           {errors.nickname && <span>{errors.nickname.message}</span>}
           <RowOneStyling
@@ -104,7 +103,7 @@ const UpdatePlantForm = (props) => {
             placeholder="species"
             value={props.plant.species}
             onChange={handleChange}
-            ref={edit}
+            ref={register}
           />
           {errors.species && <span>{errors.species.message}</span>}
           <RowOneStyling
@@ -114,7 +113,7 @@ const UpdatePlantForm = (props) => {
             placeholder="h2oFrequency"
             value={props.plant.h2oFrequency}
             onChange={handleChange}
-            ref={edit}
+            ref={register}
           />
           {errors.h2oFrequency && <span>{errors.h2oFrequency.message}</span>}
 
