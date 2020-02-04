@@ -10,6 +10,7 @@ import {
   ButtonContainer
 } from "../styled/formStyled";
 import { useParams } from "react-router-dom";
+import axios from 'axios';
 
 const ValidationSchema = Yup.object().shape({
   name: Yup.string()
@@ -36,7 +37,7 @@ const UpdatePlantForm = (props) => {
 
   useEffect(() => {
     axios
-        .get(`http://localhost:3000/plants/${id}`)
+        .get(`http://localhost:3000/plants/${plantID}`)
         .then(response => {
           setPlant(response.data);
         })
@@ -44,6 +45,12 @@ const UpdatePlantForm = (props) => {
           console.error(error);
         });
   }, [plantID])
+
+  if(!plant) {
+    return (
+      <div>Loading plant information...</div>
+    )
+  }
 
   return (
     <AddPlantContainer>
@@ -54,7 +61,7 @@ const UpdatePlantForm = (props) => {
             type="text"
             name="name"
             placeholder="name"
-            value={newPlant.name}
+            value={plant.name}
             onChange={handleChanges}
             ref={edit}
           />
@@ -64,7 +71,7 @@ const UpdatePlantForm = (props) => {
             type="text"
             name="nickname"
             placeholder="nickname"
-            value={newPlant.nickname}
+            value={plant.nickname}
             onChange={handleChanges}
             ref={edit}
           />
@@ -74,7 +81,7 @@ const UpdatePlantForm = (props) => {
             type="text"
             name="species"
             placeholder="species"
-            value={newPlant.species}
+            value={plant.species}
             onChange={handleChanges}
             ref={edit}
           />
@@ -84,7 +91,7 @@ const UpdatePlantForm = (props) => {
             type="text"
             name="h2ofrequency"
             placeholder="h2oFrequency"
-            value={newPlant.h2oFrequency}
+            value={plant.h2oFrequency}
             onChange={handleChanges}
             ref={edit}
           />

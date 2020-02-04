@@ -49,7 +49,8 @@ function App() {
               <AddPlantForm {...props} addNewPlant={addNewPlant} />
             )}
           />
-          <Route path="/plants/:plantid" component={UpdatePlantForm} />
+          <Route path="/plants/:plantid" render={props => (
+            <UpdatePlantForm {...props} />)} />
         </Switch>
         <AddPlantForm />
       </Router>
