@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import NavBar from "./components/NavBar";
 import AddPlantForm from "./components/AddPlantForm";
-
+import LoginPage from './components/LoginPage';
+import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import "./App.css";
 
 function App() {
@@ -39,7 +40,7 @@ function App() {
       <Router>
         <NavBar />
         <Switch>
-          <Route path="/login" />
+          <Route path="/login" component={LoginPage} />
           <Route exact path="/" />
           <Route path="/register" />
           <Route
