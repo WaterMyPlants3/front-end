@@ -1,40 +1,44 @@
 import React, { useState } from "react";
 import { useForm } from 'react-hook-form';
-import { ButtonStyling, AddPlantContainer, ButtonContainer } from "../styled/formStyled";
 import { InputDiv, InputLabel, ErrorMessage } from '../styled/StyledComponents_LoginForm';
+import * as Yup from 'yup';
+import PlantCard from './PlantCard';
 
+
+const ValidationSchema = Yup.object().shape({
+  nickname: Yup.string().required('Plant needs an identity'),
+  h2oFrequency: Yup.select().required('Need a schedule')
+});
 
 const AddPlantForm = props => {
-  const addNewPlant = props.addNewPlant;
 
-  const [newPlant, setNewPlant] = useState({
-    name: "",
+  const setPlant = props.addPlant;
+
+  const [plant, setPlant] = useState({
     nickname: "",
     species: "",
     h2oFrequency: "",
     id: Date.now()
   });
-  const handleChanges = event => {
-    setNewPlant({ ...newPlant, [event.target.name]: event.target.value });
-  };
-  //   const submitForm = event => {
-  //     event.preventDefault();
-  //     addNewPlant(plant);
-  //     setNewPlant({ name: "", nickname: "", species: "", h2ofrequency: "" });
-  //   };
 
-    return (
-      <AddPlantContainer>
-        <Form>
+  const { register, handleSubmit, errors } = useForm()
+
+  const onSubmit = event => {
+    setPlant({ ...plant, [event.target.name]: event.target.value });
+
+  }
+
+
+  return (
+    <Form onSubmit={handleSubmit(onSubmit)}>
+
         <InputDiv>
           <InputLabel htmlFor="nickname">Plant Nickname</InputLabel>
           <input id="nickname"
               type="text"
               name="nickname"
-              value={newPlant.nickname}
-              onChange={handleChanges}
+              value={plant.nickname}
               ref={register}/>
-            {errors.nickname && <ErrorMessage>{errors.nickname.message}</ErrorMessage>}
         </InputDiv>
             
 
@@ -43,29 +47,29 @@ const AddPlantForm = props => {
           <input id="species"
             type="text"
             name="species"
-            value={newPlant.species}
-            onChange={handleChanges}
+            value={plant.species}
             ref={register}/>
           {errors.species && <ErrorMessage>{errors.species.message}</ErrorMessage>}
-
         </InputDiv>
 
         <InputDiv>
-        <InputLabel htmlFor="h2oFrequency">Watering Schedule</InputLabel>
-          <input id="h2oFrequency"
-              type="text"
-              name="h2ofrequency"
-              value={newPlant.h2oFrequency}
-              onChange={handleChanges}
-              ref={register}/>
+        <InputLabel htmlFor="h2oFrequency">Water every:</InputLabel>
+          <select id="h2oFrequency"
+            type="select"
+            name="h2ofrequency"
+            value={plant.h2oFrequency}
+            ref={register}>
+              <option value="1">Twice a day</option>
+              <option value="2">Once a Day</option>
+              <option value="4">Every Two Days</option>
+              <option value="14">Once a Week</option>
+          </select>
           {errors.h2oFrequency && <ErrorMessage>{errors.h2oFrequency.message}</ErrorMessage>}
         </InputDiv>
             
-        <ButtonContainer>
-          <ButtonStyling>Add new plant</ButtonStyling>
-        </ButtonContainer>
-      </Form>
-    </AddPlantContainer>
+        <Button>Add new plant</Button>
+
+    </Form>
   );
 };
 

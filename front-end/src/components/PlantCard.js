@@ -1,11 +1,10 @@
 import React from "react";
 
-const PlantsCard = props => {
+const PlantCard = props => {
   return (
     <div className="plant-list">
-      {props.plantd.map(plant => (
+      {props.plant.map(plant => (
         <div className="recipe-item" key={plant.id}>
-          <h2>{plant.name}</h2>
           <h3>{plant.nickname}</h3>
           <h3>{plant.species}</h3>
           <h3>{plant.h2oFrequency}</h3>
@@ -14,4 +13,4 @@ const PlantsCard = props => {
     </div>
   );
 };
-export default PlantsCard;
+export default PlantCard;
