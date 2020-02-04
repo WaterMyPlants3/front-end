@@ -22,9 +22,7 @@ const ValidationSchema = Yup.object().shape({
     .max(30, 'Nickname must be less than 30 characters long')
     .required('Nickname is required'),
   species: Yup.string()
-    .required('Species is required'),
-  h2oFrequency: Yup.string()
-    .required('Water frequency is required')
+    .required('Species is required')
 });
 
 const UpdatePlantForm = (props) => {
@@ -85,7 +83,7 @@ const UpdatePlantForm = (props) => {
             onChange={handleChange}
             ref={register}
           />
-          {errors.name ? (<span>{errors.name.message}</span>) : null }
+          {errors.name ? (<span>{errors.name.message}</span>) : null}
           <RowOneStyling
             id="nickname"
             type="text"
@@ -95,7 +93,7 @@ const UpdatePlantForm = (props) => {
             onChange={handleChange}
             ref={register}
           />
-          {errors.nickname && <span>{errors.nickname.message}</span>}
+          {errors.nickname ? (<span>{errors.nickname.message}</span>) : null}
           <RowOneStyling
             id="species"
             type="text"
@@ -105,7 +103,7 @@ const UpdatePlantForm = (props) => {
             onChange={handleChange}
             ref={register}
           />
-          {errors.species && <span>{errors.species.message}</span>}
+          {errors.species ? (<span>{errors.species.message}</span>) : null}
           <RowOneStyling
             id="h2oFrequency"
             type="text"
@@ -115,7 +113,6 @@ const UpdatePlantForm = (props) => {
             onChange={handleChange}
             ref={register}
           />
-          {errors.h2oFrequency && <span>{errors.h2oFrequency.message}</span>}
 
           <ButtonContainer>
             <ButtonStyling>Update Plant</ButtonStyling>
