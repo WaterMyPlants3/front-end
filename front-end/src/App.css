@@ -36,12 +36,3 @@
     transform: rotate(360deg);
   }
 }
-
-.sign_up_link {
-  font-size: .8rem;
-}
-
-.sign_up_link:hover {
-  color: green;
-  text-decoration: none;
-}
