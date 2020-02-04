@@ -6,12 +6,13 @@ import { gsap, Linear } from "gsap";
 const NavStyle = styled.nav`
   display: flex;
   justify-content: space-evenly;
-  font-size: 2rem;
+  font-size: 1.5rem;
   background-color: #bbbbbb;
   // border: 1px solid #DCDCDC;
   border-radius: 10px;
   padding: 2%;
   margin: 3%;
+  text-decoration: none;
 `;
 
 const NavBar = () => {

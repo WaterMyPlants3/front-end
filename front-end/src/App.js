@@ -3,9 +3,10 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import NavBar from "./components/NavBar";
 import AddPlantForm from "./components/AddPlantForm";
 import LoginPage from "./components/LoginPage";
+// import RegistrationForm from "./components/RegistrationForm";
+import TestForm from "./components/TestForm";
 // import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import "./App.css";
-import LoginForm from "./components/LoginForm";
 
 function App() {
   const [plant, setPlant] = useState([
