@@ -2,18 +2,14 @@ import React, { useState } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import NavBar from "./components/NavBar";
 
-import LoginPage from './components/LoginPage';
-import "./App.css";
-import UpdatePlantForm from './components/UpdatePlantForm';
-import PlantList from './components/PlantList';
-
-import AddPlantForm from "./components/AddPlantForm";
 import LoginPage from "./components/LoginPage";
-// import RegistrationForm from "./components/RegistrationForm";
-import TestForm from "./components/TestForm";
-// import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import "./App.css";
+import UpdatePlantForm from "./components/UpdatePlantForm";
+import PlantList from "./components/PlantList";
 
+// import RegistrationForm from "./components/RegistrationForm";
+// import TestForm from "./components/TestForm";
+// import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   const [plant, setPlant] = useState([
@@ -48,20 +44,20 @@ function App() {
   };
 
   const [editPlant, setEditPlant] = useState({
-    name: '',
-    nickname: '',
-    species: '',
-    h2oFrequency: ''
+    name: "",
+    nickname: "",
+    species: "",
+    h2oFrequency: ""
   });
 
-  const plantToEdit = (plant) => {
+  const plantToEdit = plant => {
     const editPlant = {
       id: plant.id,
       name: plant.name,
       nickname: plant.nicname,
       species: plant.species,
       h2oFrequency: plant.h2oFrequency
-    }
+    };
     setEditPlant(editPlant);
   };
 
@@ -72,23 +68,33 @@ function App() {
         <Switch>
           <Route path="/login" component={LoginPage} />
 
-          <Route path="/plants" render={props => (
-            <div>
-              <PlantList {...props} plant={plant} plantToEdit={plantToEdit} editPlant={editPlant} addNewPlant={addNewPlant} />
-            </div>
-          )}/>
+          <Route
+            path="/plants"
+            render={props => (
+              <div>
+                <PlantList
+                  {...props}
+                  plant={plant}
+                  plantToEdit={plantToEdit}
+                  editPlant={editPlant}
+                  addNewPlant={addNewPlant}
+                />
+              </div>
+            )}
+          />
 
           <Route exact path="/" component={LoginPage} />
 
           <Route path="/register" />
-          <Route path="/plants/:plantid" render={props => (
-            <UpdatePlantForm {...props} editPlant={editPlant} plant={plant} />)} />
+          <Route
+            path="/plants/:plantid"
+            render={props => (
+              <UpdatePlantForm {...props} editPlant={editPlant} plant={plant} />
+            )}
+          />
         </Switch>
 
-
-
         {/* <AddPlantForm /> */}
-
       </Router>
     </div>
   );
