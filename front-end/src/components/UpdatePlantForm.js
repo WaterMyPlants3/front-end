@@ -34,19 +34,35 @@ const UpdatePlantForm = (props) => {
     event.preventDefault();
    };
 
-  const [plant, setPlant] = useState();
+  const [plant, setPlant] = useState({
+    name: '',
+    nickname: '',
+    species: '',
+    h2oFrequency: ''
+  });
   const plantID = useParams();
 
   useEffect(() => {
-    axios
-        .get(`http://localhost:3000/plants/${plantID}`)
+    axios.get(`http://localhost:3000/plants/${plantID}`)
         .then(response => {
           setPlant(response.data);
         })
         .catch(error => {
           console.error(error);
         });
-  }, [plantID])
+
+    setPlant({
+      name: props.editPlant.name,
+      nickname: props.editPlant.nickname,
+      species: props.editPlant.species,
+      h2oFrequency: props.editPlant.h2oFrequency
+    })
+  }, [plantID, props.editPlant]);
+
+
+  const handleChange = (event) => {
+    setPlant({...plant, [event.target.name]: event.target.value});
+  };
 
   // if(!plant) {
   //   return (
@@ -64,6 +80,7 @@ const UpdatePlantForm = (props) => {
             name="name"
             placeholder="name"
             value={plant.name}
+            onChange={handleChange}
             ref={edit}
           />
           {errors.name && <span>{errors.name.message}</span>}
@@ -73,6 +90,7 @@ const UpdatePlantForm = (props) => {
             name="nickname"
             placeholder="nickname"
             value={plant.nickname}
+            onChange={handleChange}
             ref={edit}
           />
           {errors.nickname && <span>{errors.nickname.message}</span>}
@@ -82,6 +100,7 @@ const UpdatePlantForm = (props) => {
             name="species"
             placeholder="species"
             value={plant.species}
+            onChange={handleChange}
             ref={edit}
           />
           {errors.species && <span>{errors.species.message}</span>}
@@ -91,6 +110,7 @@ const UpdatePlantForm = (props) => {
             name="h2ofrequency"
             placeholder="h2oFrequency"
             value={plant.h2oFrequency}
+            onChange={handleChange}
             ref={edit}
           />
           {errors.h2oFrequency && <span>{errors.h2oFrequency.message}</span>}

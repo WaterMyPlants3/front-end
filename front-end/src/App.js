@@ -11,18 +11,21 @@ function App() {
   const [plant, setPlant] = useState([
     {
       id: 1,
+      name: "a plant",
       nickname: "indoor plant",
       species: "undefined",
       h2oFrequency: "once a week"
     },
     {
       id: 2,
+      name: "a plant",
       nickname: "indoor plant",
       species: "undefined",
       h2oFrequency: "once a week"
     },
     {
       id: 3,
+      name: "a plant",
       nickname: "indoor plant",
       species: "undefined",
       h2oFrequency: "once a week"
@@ -59,7 +62,7 @@ function App() {
       <Router>
         <NavBar />
         <Switch>
-          <UpdatePlantForm />
+          <UpdatePlantForm editPlant={editPlant} />
           <Route path="/login" component={LoginPage} />
           <Route exact path="/" render={props => (
             <PlantList {...props} plantToEdit={plantToEdit} />
