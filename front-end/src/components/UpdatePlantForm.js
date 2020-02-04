@@ -31,7 +31,7 @@ const ValidationSchema = Yup.object().shape({
 const UpdatePlantForm = (props) => {
   const { edit, handleSubmit, errors } = useForm({ validationSchema: ValidationSchema, mode: "onChange" });
   const onSubmit = (event) => { 
-    event.preventDefault();
+    console.log(event)
    };
 
   const [plant, setPlant] = useState({
@@ -41,6 +41,7 @@ const UpdatePlantForm = (props) => {
     h2oFrequency: ''
   });
   const plantID = useParams();
+  console.log(plantID);
 
   useEffect(() => {
     axios.get(`http://localhost:3000/plants/${plantID}`)
@@ -50,25 +51,27 @@ const UpdatePlantForm = (props) => {
         .catch(error => {
           console.error(error);
         });
+  }, [plantID]);
 
+  useEffect(() => {
     setPlant({
-      name: props.editPlant.name,
-      nickname: props.editPlant.nickname,
-      species: props.editPlant.species,
-      h2oFrequency: props.editPlant.h2oFrequency
+      name: props.plant.name,
+      nickname: props.plant.nickname,
+      species: props.plant.species,
+      h2oFrequency: props.plant.h2oFrequency
     })
-  }, [plantID, props.editPlant]);
+  }, [props.editPlant])
 
 
   const handleChange = (event) => {
     setPlant({...plant, [event.target.name]: event.target.value});
   };
 
-  // if(!plant) {
-  //   return (
-  //     <div>Loading plant information...</div>
-  //   )
-  // }
+  if(!plant) {
+    return (
+      <div>Loading plant information...</div>
+    )
+  }
 
   return (
     <AddPlantContainer>

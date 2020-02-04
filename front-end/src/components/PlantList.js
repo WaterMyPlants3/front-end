@@ -29,9 +29,7 @@ const PlantList = (props) => {
     <section className="plants-list">
       <SearchBar handleInputChange={handleInputChange} />
       <ListStyle>
-        {props.plant.map((plant, index) => {
-          return <PlantCard key={index} name={plant.name} plantToEdit={props.plantToEdit} />;
-        })}
+        <PlantCard key={props.plant.id} plantToEdit={props.plantToEdit} plant={props.plant} />
       </ListStyle>
       <AddPlantForm />
     </section>

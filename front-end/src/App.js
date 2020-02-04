@@ -62,10 +62,9 @@ function App() {
       <Router>
         <NavBar />
         <Switch>
-          <UpdatePlantForm editPlant={editPlant} />
           <Route path="/login" component={LoginPage} />
           <Route exact path="/" render={props => (
-            <PlantList {...props} plantToEdit={plantToEdit} />
+            <PlantList {...props} plant={plant} plantToEdit={plantToEdit} />
           )}/>
           <Route path="/register" />
           <Route
@@ -75,7 +74,7 @@ function App() {
             )}
           />
           <Route path="/plants/:plantid" render={props => (
-            <UpdatePlantForm {...props} />)} />
+            <UpdatePlantForm {...props} editPlant={editPlant} plant={plant} />)} />
         </Switch>
         <AddPlantForm />
       </Router>
