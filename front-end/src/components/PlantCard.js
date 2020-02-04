@@ -9,6 +9,7 @@ const PlantsCard = props => {
           <h3>{plant.nickname}</h3>
           <h3>{plant.species}</h3>
           <h3>{plant.h2oFrequency}</h3>
+          <button onClick={() => props.plantToEdit(plant)}>Edit</button>
         </div>
       ))}
     </div>

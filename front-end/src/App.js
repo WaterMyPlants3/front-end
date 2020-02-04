@@ -5,6 +5,7 @@ import AddPlantForm from "./components/AddPlantForm";
 import LoginPage from './components/LoginPage';
 import "./App.css";
 import UpdatePlantForm from "./components/UpdatePlantForm";
+import PlantList from './components/PlantList';
 
 function App() {
   const [plant, setPlant] = useState([
@@ -50,7 +51,7 @@ function App() {
       species: plant.species,
       h2oFrequency: plant.h2oFrequency
     }
-    setEditMember(editMember);
+    setEditPlant(editPlant);
   };
 
   return (
@@ -60,7 +61,9 @@ function App() {
         <Switch>
           <UpdatePlantForm />
           <Route path="/login" component={LoginPage} />
-          <Route exact path="/" />
+          <Route exact path="/" render={props => (
+            <PlantList {...props} plantToEdit={plantToEdit} />
+          )}/>
           <Route path="/register" />
           <Route
             path="/plants"

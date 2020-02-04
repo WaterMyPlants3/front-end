@@ -16,7 +16,7 @@ const ListStyle = styled.div`
   margin: 3%;
 `;
 
-const PlantList = () => {
+const PlantList = (props) => {
   const [input, setInput] = useState("");
 
   // Add use Effect with axiosWithAuth here:
@@ -29,8 +29,8 @@ const PlantList = () => {
     <section className="plants-list">
       <SearchBar handleInputChange={handleInputChange} />
       <ListStyle>
-        {plants.map((plant, index) => {
-          return <PlantCard key={index} name={plant.name} />;
+        {props.plant.map((plant, index) => {
+          return <PlantCard key={index} name={plant.name} plantToEdit={props.plantToEdit} />;
         })}
       </ListStyle>
       <AddPlantForm />
