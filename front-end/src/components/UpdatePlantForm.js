@@ -28,8 +28,7 @@ const ValidationSchema = Yup.object().shape({
 
 const UpdatePlantForm = () => {
   const { edit, handleSubmit, errors } = useForm({ validationSchema: ValidationSchema });
-  const onSubmit = (data, event) => { // Need to add in a save and return to home page option
-   };
+  const onSubmit = (values) => { console.log(values) };
 
   return (
     <AddPlantContainer>

@@ -4,6 +4,7 @@ import NavBar from "./components/NavBar";
 import AddPlantForm from "./components/AddPlantForm";
 import LoginPage from './components/LoginPage';
 import "./App.css";
+import UpdatePlantForm from "./components/UpdatePlantForm";
 
 function App() {
   const [plant, setPlant] = useState([
@@ -48,6 +49,7 @@ function App() {
               <AddPlantForm {...props} addNewPlant={addNewPlant} />
             )}
           />
+          <Route path="/plants/:plantid" component={UpdatePlantForm} />
         </Switch>
         <AddPlantForm />
       </Router>
