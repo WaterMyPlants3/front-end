@@ -35,11 +35,30 @@ function App() {
     setPlant([...plant, newPlant]);
   };
 
+  const [editPlant, setEditPlant] = useState({
+    name: '',
+    nickname: '',
+    species: '',
+    h2oFrequency: ''
+  });
+
+  const plantToEdit = (plant) => {
+    const editPlant = {
+      id: plant.id,
+      name: plant.name,
+      nickname: plant.nicname,
+      species: plant.species,
+      h2oFrequency: plant.h2oFrequency
+    }
+    setEditMember(editMember);
+  };
+
   return (
     <div className="App">
       <Router>
         <NavBar />
         <Switch>
+          <UpdatePlantForm />
           <Route path="/login" component={LoginPage} />
           <Route exact path="/" />
           <Route path="/register" />

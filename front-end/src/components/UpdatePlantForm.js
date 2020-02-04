@@ -29,8 +29,10 @@ const ValidationSchema = Yup.object().shape({
 });
 
 const UpdatePlantForm = (props) => {
-  const { edit, handleSubmit, errors } = useForm({ validationSchema: ValidationSchema });
-  const onSubmit = (values) => { console.log(values) };
+  const { edit, handleSubmit, errors } = useForm({ validationSchema: ValidationSchema, mode: "onChange" });
+  const onSubmit = (event) => { 
+    event.preventDefault();
+   };
 
   const [plant, setPlant] = useState();
   const plantID = useParams();
@@ -46,11 +48,11 @@ const UpdatePlantForm = (props) => {
         });
   }, [plantID])
 
-  if(!plant) {
-    return (
-      <div>Loading plant information...</div>
-    )
-  }
+  // if(!plant) {
+  //   return (
+  //     <div>Loading plant information...</div>
+  //   )
+  // }
 
   return (
     <AddPlantContainer>
@@ -62,7 +64,6 @@ const UpdatePlantForm = (props) => {
             name="name"
             placeholder="name"
             value={plant.name}
-            onChange={handleChanges}
             ref={edit}
           />
           {errors.name && <span>{errors.name.message}</span>}
@@ -72,7 +73,6 @@ const UpdatePlantForm = (props) => {
             name="nickname"
             placeholder="nickname"
             value={plant.nickname}
-            onChange={handleChanges}
             ref={edit}
           />
           {errors.nickname && <span>{errors.nickname.message}</span>}
@@ -82,7 +82,6 @@ const UpdatePlantForm = (props) => {
             name="species"
             placeholder="species"
             value={plant.species}
-            onChange={handleChanges}
             ref={edit}
           />
           {errors.species && <span>{errors.species.message}</span>}
@@ -92,7 +91,6 @@ const UpdatePlantForm = (props) => {
             name="h2ofrequency"
             placeholder="h2oFrequency"
             value={plant.h2oFrequency}
-            onChange={handleChanges}
             ref={edit}
           />
           {errors.h2oFrequency && <span>{errors.h2oFrequency.message}</span>}
