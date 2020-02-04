@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import NavBar from "./components/NavBar";
-import AddPlantForm from "./components/AddPlantForm";
 import LoginPage from './components/LoginPage';
 import "./App.css";
 import UpdatePlantForm from './components/UpdatePlantForm';
@@ -64,15 +63,11 @@ function App() {
         <Switch>
           <Route path="/login" component={LoginPage} />
           <Route path="/plants" render={props => (
-            <PlantList {...props} plant={plant} plantToEdit={plantToEdit} editPlant={editPlant} />
+            <div>
+              <PlantList {...props} plant={plant} plantToEdit={plantToEdit} editPlant={editPlant} addNewPlant={addNewPlant} />
+            </div>
           )}/>
           <Route path="/register" />
-          <Route
-            path="/plants"
-            render={props => (
-              <AddPlantForm {...props} addNewPlant={addNewPlant} />
-            )}
-          />
           <Route path="/plants/:plantid" render={props => (
             <UpdatePlantForm {...props} editPlant={editPlant} plant={plant} />)} />
         </Switch>

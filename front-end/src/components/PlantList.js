@@ -1,10 +1,8 @@
 import React, { useState } from "react";
-import { Route } from 'react-router-dom';
 import styled from "styled-components";
 import AddPlantForm from "./AddPlantForm";
 import PlantCard from "./PlantCard";
 import SearchBar from "./SearchBar";
-import UpdatePlantForm from './UpdatePlantForm';
 
 const ListStyle = styled.div`
   display: grid;
@@ -34,7 +32,7 @@ const PlantList = (props) => {
       <ListStyle>
         <PlantCard key={props.plant.id} plantToEdit={props.plantToEdit} plant={props.plant} />
       </ListStyle>
-      <AddPlantForm />
+      <AddPlantForm addNewPlant={props.addNewPlant} />
     </section>
   );
 };
