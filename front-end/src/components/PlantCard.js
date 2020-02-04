@@ -1,6 +1,13 @@
 import React from "react";
+import { useHistory } from 'react-router-dom';
 
 const PlantsCard = props => {
+  const history = useHistory();
+
+  function edit() {
+    history.push(`/plants/${props.plantID}`);
+  };
+
   return (
     <div className="plant-list">
       {props.plant.map(plant => (
@@ -9,7 +16,7 @@ const PlantsCard = props => {
           <h3>{plant.nickname}</h3>
           <h3>{plant.species}</h3>
           <h3>{plant.h2oFrequency}</h3>
-          <button onClick={() => props.plantToEdit(plant)}>Edit</button>
+          <button onClick={edit}>Edit</button>
         </div>
       ))}
     </div>

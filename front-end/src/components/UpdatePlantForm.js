@@ -55,10 +55,10 @@ const UpdatePlantForm = (props) => {
 
   useEffect(() => {
     setPlant({
-      name: props.plant.name,
-      nickname: props.plant.nickname,
-      species: props.plant.species,
-      h2oFrequency: props.plant.h2oFrequency
+      name: props.name,
+      nickname: props.nickname,
+      species: props.species,
+      h2oFrequency: props.h2oFrequency
     })
   }, [props.editPlant])
 

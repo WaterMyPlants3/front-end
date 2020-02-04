@@ -4,7 +4,6 @@ import NavBar from "./components/NavBar";
 import AddPlantForm from "./components/AddPlantForm";
 import LoginPage from './components/LoginPage';
 import "./App.css";
-import UpdatePlantForm from "./components/UpdatePlantForm";
 import PlantList from './components/PlantList';
 
 function App() {
@@ -63,8 +62,8 @@ function App() {
         <NavBar />
         <Switch>
           <Route path="/login" component={LoginPage} />
-          <Route exact path="/" render={props => (
-            <PlantList {...props} plant={plant} plantToEdit={plantToEdit} />
+          <Route path="/plants" render={props => (
+            <PlantList {...props} plant={plant} plantToEdit={plantToEdit} editPlant={editPlant} />
           )}/>
           <Route path="/register" />
           <Route
@@ -73,10 +72,7 @@ function App() {
               <AddPlantForm {...props} addNewPlant={addNewPlant} />
             )}
           />
-          <Route path="/plants/:plantid" render={props => (
-            <UpdatePlantForm {...props} editPlant={editPlant} plant={plant} />)} />
         </Switch>
-        <AddPlantForm />
       </Router>
     </div>
   );
