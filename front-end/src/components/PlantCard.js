@@ -7,9 +7,21 @@ import { axiosWithAuth } from "../utils/axiosWithAuth";
 const CardStyle = styled.div`
   text-align: center;
   border-radius: 10px;
-  background-color: whitesmoke;
-  font-family: "Lucida Casual", "Comic Sans MS";
-  color: #22283a;
+  background-color: #FAF0E6;
+  color: #487346;
+`;
+
+const CardButton = styled.button`
+  margin: 2%;
+  font-size: .8rem;
+  background: #487346;
+  color: #FAF0E6;
+  border-radius: 10px;
+  &:hover {
+    background: #89CC7C;
+    color: #487346;
+    cursor: pointer;
+  }
 `;
 
 const initialPlant = {
@@ -69,7 +81,7 @@ const PlantCard = props => {
         {/* <h3>{props.plant.nickname}</h3> */}
         <h3>{props.plant.species}</h3>
         {/* <h3>{props.plant.h2oFrequency}</h3> */}
-        {/* <button onClick={edit}>Edit</button> */}
+        {/* <CardButton onClick={edit}>Edit</CardButton> */}
       </div>
       <span>
         <span
@@ -85,12 +97,12 @@ const PlantCard = props => {
         {props.id}
       </span>
       <div className="buttons">
-        <button onClick={() => props.deletePlant(props.plant.id)}>
-          Delete Recipe
-        </button>
-        <button onClick={() => props.selectPlant(props.plant)}>
-          Update Recipe
-        </button>
+        <CardButton onClick={() => props.deletePlant(props.plant.id)}>
+          Delete Plant
+        </CardButton>
+        <CardButton onClick={() => props.selectPlant(props.plant)}>
+          Update Plant
+        </CardButton>
       </div>
     </CardStyle>
   );

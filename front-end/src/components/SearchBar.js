@@ -20,7 +20,6 @@ const SearchBar = props => {
         <SearchBarStyle
           type="text"
           name="name"
-          // placeholder="Search by name"
           autoComplete="off"
           value={props.input}
           onChange={props.handleChange}
