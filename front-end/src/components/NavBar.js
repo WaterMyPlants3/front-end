@@ -77,7 +77,7 @@ const NavBar = () => {
   return (
     <NavStyle>
       <a
-        href="#"
+        href="https://watermyplants3.github.io/marketing-ui/"
         ref={e => (home = e)}
         onMouseEnter={scaleUp}
         onMouseLeave={scaleDown}
