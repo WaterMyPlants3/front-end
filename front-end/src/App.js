@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import NavBar from "./components/NavBar";
-import AddPlantForm from "./components/AddPlantForm";
-import LoginPage from "./components/LoginPage";
+import NavBar from "./components/navbar";
+import AddPlantForm from "./components/addplant";
+import LoginPage from "./components/loginpage";
 // import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import "./App.css";
 import LoginForm from "./components/LoginForm";

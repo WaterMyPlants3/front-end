@@ -1,37 +1,40 @@
 import React, { useState } from "react";
-import { useForm } from 'react-hook-form';
-import { InputDiv, InputLabel, ErrorMessage } from '../styled/StyledComponents_LoginForm';
 import * as Yup from 'yup';
-import PlantCard from './PlantCard';
 
-
+/////////////////////////////////////Validation Using Yup/////////////////////////////////////
 const ValidationSchema = Yup.object().shape({
   nickname: Yup.string().required('Plant needs an identity'),
   h2oFrequency: Yup.select().required('Need a schedule')
 });
 
-const AddPlantForm = props => {
+///////////////////////////////////////Create Form for Adding Plants//////////////////////////
+export default function AddPlantForm() {
 
-  const setPlant = props.addPlant;
-
-  const [plant, setPlant] = useState({
+  ////////////////////////////////////Define state as plant object////////////////////////////////
+  const [plant, setPlants] = useState({
     nickname: "",
     species: "",
-    h2oFrequency: "",
+    h2oFrequency: '',
     id: Date.now()
   });
 
-  const { register, handleSubmit, errors } = useForm()
-
-  const onSubmit = event => {
-    setPlant({ ...plant, [event.target.name]: event.target.value });
-
+  //////////////////////////////////////////Function for making new plant////////////////////////////
+const addNewPlant = plant => {
+  const newPlant = {
+    nickname: plant.name,
+    species: plant.species,
+    h2oFrequency: plant.h2ofrequency,
+    id: plant.id
   }
+}
+
+/////////////////////////////////////////Change state using new plant//////////////////////////////////
+setPlants([...plants, newPlant]);
 
 
+///////////////////////////////////////////Form to add plant/////////////////////////////////////////////
   return (
-    <Form onSubmit={handleSubmit(onSubmit)}>
-
+    <Form addNewPlant = {addNewPlant}> {/*Input (x3) to fill values*/}
         <InputDiv>
           <InputLabel htmlFor="nickname">Plant Nickname</InputLabel>
           <input id="nickname"
@@ -67,10 +70,8 @@ const AddPlantForm = props => {
           {errors.h2oFrequency && <ErrorMessage>{errors.h2oFrequency.message}</ErrorMessage>}
         </InputDiv>
             
-        <Button>Add new plant</Button>
+        <Button type='submit'>Add new plant</Button>
 
     </Form>
   );
 };
-
-export default AddPlantForm;

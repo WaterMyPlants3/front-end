@@ -1,5 +1,7 @@
 import React from "react";
 
+
+//////////////////////////////////////////Create Plant Card --  using props to fill values///////////////////////////////////
 const PlantCard = props => {
   return (
     <div className="plant-list">

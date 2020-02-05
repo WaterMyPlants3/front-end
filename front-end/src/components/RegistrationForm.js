@@ -1,9 +1,7 @@
 import React from 'react';
-// import { Form, Button } from 'reactstrap';
-import { useForm } from 'react-hook-form';
 import * as Yup from 'yup';
-import { InputDiv, InputLabel, ErrorMessage, Button } from '../styled/StyledComponents_LoginForm';
 
+//////////////////////////////////////////////////////Validation Using Yup/////////////////////////////////
 const ValidationSchema = Yup.object().shape({
 
   first_name: Yup.string()
@@ -27,13 +25,14 @@ const ValidationSchema = Yup.object().shape({
 
 });
 
+//////////////////////////////////////////////////Create Registration Form/////////////////////////////////////
 const RegistrationForm = () => {
   const { handleSubmit, register, errors } = useForm({ validationSchema: ValidationSchema });
   const onSubmit = values => { console.log(values) };
 
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
-      <InputDiv>
+      <InputDiv>  {/*Input (x5) in one form; needs validation, set States, data to backend*/}
         <InputLabel htmlFor="first_name">Name</InputLabel>s
         <input id="first_name" name="first_name" type="text" ref={register} />
         {errors.first_name && <ErrorMessage>{errors.first_name.message}</ErrorMessage>}
