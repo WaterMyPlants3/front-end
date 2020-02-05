@@ -26,3 +26,11 @@
     transform: rotate(360deg);
   }
 }
+
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  color: #487346;
+}

@@ -11,17 +11,18 @@ export const LoginButton = styled.button`
   margin: 1%;
   border-radius: 15px;
   width: 30%;
-  background: white;
-  color: green;
+  font-size: 1.2rem;
+  background: #FAF0E6;
+  color: #487346;
   &:hover {
-    background: green;
-    color: white;
+    background: #487346;
+    color: #FAF0E6;
   }
 `;
 
 export const InputLabel = styled.label`
   text-align: start;
-  color: green;
+  color: #487346;
 `;
 
 export const ErrorMessage = styled.div`
@@ -40,12 +41,12 @@ export const LoginBox = styled.div`
 `;
 
 export const AppTitle = styled.h1`
-  color: green;
+  color: #487346;
   margin: 1%;
 `;
 
 export const AppLogin = styled.h3`
-  color: green;
+  color: #487346;
   margin: 1%;
   font-size: 1.6rem;
 `;
