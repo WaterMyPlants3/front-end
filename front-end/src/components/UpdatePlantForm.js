@@ -8,13 +8,6 @@ import {
   LoginButton,
   LoginBox,
 } from "../styled/StyledComponents_LoginForm";
-// import {
-//   ButtonStyling,
-//   AddPlantContainer,
-//   LoginBox,
-//   input,
-//   ButtonContainer
-// } from "../styled/formStyled";
 import { useParams } from "react-router-dom";
 import axios from 'axios';
 
