@@ -1,17 +1,12 @@
 import React, { useState } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import NavBar from "./components/NavBar";
-
 import LoginPage from "./components/LoginPage";
 import "./App.css";
 import UpdatePlantForm from "./components/UpdatePlantForm";
 import PlantList from "./components/PlantList";
 import AddPlantForm from "./components/AddPlantForm";
 import RegistrationForm from "./components/RegistrationForm";
-
-// import RegistrationForm from "./components/RegistrationForm";
-// import TestForm from "./components/TestForm";
-// import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   const [plant, setPlant] = useState([
