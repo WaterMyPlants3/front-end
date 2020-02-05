@@ -6,8 +6,6 @@ import {
   ErrorMessage,
   LoginButton
 } from "../styled/StyledComponents_LoginForm";
-import * as Yup from "yup";
-import PlantCard from "./PlantCard";
 
 // const ValidationSchema = Yup.object().shape({
 //   nickname: Yup.string().required("Plant needs an identity"),

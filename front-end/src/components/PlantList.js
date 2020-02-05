@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import AddPlantForm from "./AddPlantForm";
 import PlantCard from "./PlantCard";
@@ -17,10 +17,24 @@ const ListStyle = styled.div`
   margin: 3%;
 `;
 
-const PlantList = (props) => {
+const PlantList = props => {
   const [input, setInput] = useState("");
+  const [plants, setPlants] = useState([]);
 
   // Add use Effect with axiosWithAuth here to filter data:
+
+  useEffect(() => {
+    axiosWithAuth()
+      .get("/api/plants")
+      .then(response => {
+        console.log(response.data);
+        const searchPlant = response.data.filter(plnt =>
+          plnt.species.toLowerCase().includes(input.toLocaleLowerCase())
+        );
+        setPlants(searchPlant);
+      })
+      .catch(err => console.log("what went wrong?", err));
+  }, []);
 
   const handleInputChange = event => {
     event.preventDefault();
@@ -31,9 +45,22 @@ const PlantList = (props) => {
     <section className="plants-list">
       <SearchBar handleInputChange={handleInputChange} />
       <ListStyle>
-        <PlantCard key={props.plant.id} plantToEdit={props.plantToEdit} plant={props.plant} />
+        {plants.map((plnt, index) => {
+          return (
+            <PlantCard
+              key={index}
+              plantToEdit={props.plantToEdit}
+              // name={plnt.name}
+              id={plnt.id} //string
+              species={plnt.species} //string
+              plants={plants} // array
+              plant={plnt}
+              setPlants={setPlants}
+            />
+          );
+        })}
       </ListStyle>
-      <AddPlantForm addNewPlant={props.addNewPlant} />
+      <AddPlantForm />
     </section>
   );
 };
