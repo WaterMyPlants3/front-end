@@ -60,14 +60,6 @@ const RegistrationForm = () => {
         </InputDiv>
 
         <InputDiv>
-          <InputLabel htmlFor="phonenumber">Mobile Number</InputLabel>
-          <input id="phonenumber" name="phonenumber" type="text" ref={register} />
-          {errors.phonenumber && (
-            <ErrorMessage>{errors.phonenumber.message}</ErrorMessage>
-          )}
-        </InputDiv>
-
-        <InputDiv>
           <InputLabel htmlFor="email">Email</InputLabel>
           <input id="email" name="email" type="text" ref={register} />
           {errors.email && <ErrorMessage>{errors.email.message}</ErrorMessage>}
