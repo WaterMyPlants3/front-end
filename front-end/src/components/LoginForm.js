@@ -15,13 +15,8 @@ const ValidationSchema = Yup.object().shape({
   password: Yup.string().required("Password is required")
 });
 
-const LoginForm = () => {
-  const [values, setValues] = useState({
-    username: "",
-    password: ""
-  });
-
-  const { register, handleSubmit, errors, getValues, reset } = useForm({
+const LoginForm = props => {
+  const { register, handleSubmit, errors } = useForm({
     validationSchema: ValidationSchema
   });
 
@@ -29,31 +24,21 @@ const LoginForm = () => {
     axiosWithAuth()
       .post(
         "api/auth/login",
-        `grant_type=password&username=${values.username}&password=${values.password}`
+        `grant_type=password&username=${event.username}&password=${event.password}`
       )
       .then(res => {
         console.log(res);
         localStorage.setItem("token", res.data.access_token);
-        // props.history.push("/plants");
+        props.history.push("/plants");
       })
       .catch(err => console.log(err));
   };
-
-  // const onSubmit = (data, event) => {
-  //   event.target.reset();
-  // };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <InputDiv>
         <InputLabel htmlFor="username">Username</InputLabel>
-        <input
-          id="username"
-          name="username"
-          type="text"
-          value={values.username}
-          ref={register}
-        />
+        <input id="username" name="username" type="text" ref={register} />
         {errors.username && (
           <ErrorMessage>{errors.username.message}</ErrorMessage>
         )}
@@ -61,24 +46,18 @@ const LoginForm = () => {
 
       <InputDiv>
         <InputLabel htmlFor="password">Password</InputLabel>
-        <input
-          id="password"
-          name="password"
-          type="password"
-          value={values.password}
-          ref={register}
-        />
+        <input id="password" name="password" type="password" ref={register} />
         {errors.password && (
           <ErrorMessage>{errors.password.message}</ErrorMessage>
         )}
       </InputDiv>
 
       <LoginButton
-        onClick={() => {
-          const values = getValues();
-          setValues({ ...values, values });
-          console.log("values", values);
-        }}
+        // onClick={() => {
+        //   const values = getValues();
+        //   setValues({ ...values, values });
+        //   console.log("values", values);
+        // }}
         type="submit"
       >
         Login

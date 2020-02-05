@@ -6,6 +6,7 @@ import LoginPage from "./components/LoginPage";
 import "./App.css";
 import UpdatePlantForm from "./components/UpdatePlantForm";
 import PlantList from "./components/PlantList";
+import AddPlantForm from "./components/AddPlantForm";
 
 // import RegistrationForm from "./components/RegistrationForm";
 // import TestForm from "./components/TestForm";
@@ -86,12 +87,20 @@ function App() {
           <Route exact path="/" component={LoginPage} />
 
           <Route path="/register" />
-          <Route
+          {/* <Route
             path="/plants/:plantid"
             render={props => (
               <UpdatePlantForm {...props} editPlant={editPlant} plant={plant} />
             )}
+          /> */}
+          <Route
+            path="/plants"
+            render={props => (
+              <AddPlantForm {...props} addNewPlant={addNewPlant} />
+            )}
           />
+
+          <Route path="/plants" component={PlantList} />
         </Switch>
 
         {/* <AddPlantForm /> */}
