@@ -13,7 +13,7 @@ const LoginPage = props => {
       <AppTitle>Water My Plants</AppTitle>
       <AppLogin>Login to Your Account</AppLogin>
       <LoginForm {...props} />
-      <Link className="sign_up_link" to="/">
+      <Link className="sign_up_link" to="/register">
         Create an account
       </Link>
     </LoginBox>

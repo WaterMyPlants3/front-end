@@ -22,9 +22,6 @@ const PlantList = props => {
   const [plants, setPlants] = useState([]);
 
   // Add use Effect with axiosWithAuth here to filter data:
-  const getPlants = () => {
-    axiosWithAuth().get();
-  };
 
   useEffect(() => {
     axiosWithAuth()
@@ -32,7 +29,7 @@ const PlantList = props => {
       .then(response => {
         console.log(response.data);
         const searchPlant = response.data.filter(plnt =>
-          plnt.name.toLowerCase().includes(input.toLocaleLowerCase())
+          plnt.species.toLowerCase().includes(input.toLocaleLowerCase())
         );
         setPlants(searchPlant);
       })
@@ -54,8 +51,10 @@ const PlantList = props => {
               key={index}
               plantToEdit={props.plantToEdit}
               // name={plnt.name}
-              species={plnt.species}
-              plants={plants}
+              id={plnt.id} //string
+              species={plnt.species} //string
+              plants={plants} // array
+              plant={plnt}
               setPlants={setPlants}
             />
           );

@@ -21,7 +21,7 @@ const ValidationSchema = Yup.object().shape({
   phonenumber: Yup.string().required("Phone number required"),
 
   email: Yup.string()
-    .email()("Must be valid email address")
+    .email("Must be valid email address")
     .required("Email address is required"),
 
   password: Yup.string()

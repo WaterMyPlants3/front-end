@@ -66,7 +66,7 @@ const PlantCard = props => {
   return (
     <CardStyle key={props.id} onClick={() => editPlant(props.plant)}>
       <div className="recipe-item" key={props.plant.id}>
-        <h3>{props.plant.nickname}</h3>
+        {/* <h3>{props.plant.nickname}</h3> */}
         <h3>{props.plant.species}</h3>
         {/* <h3>{props.plant.h2oFrequency}</h3> */}
         {/* <button onClick={edit}>Edit</button> */}

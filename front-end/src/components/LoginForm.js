@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import axios from "axios";
 import { useForm } from "react-hook-form";
 import * as Yup from "yup";
+import RegistrationForm from "./RegistrationForm";
 import {
   InputDiv,
   InputLabel,
