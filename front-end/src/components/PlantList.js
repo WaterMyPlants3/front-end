@@ -21,8 +21,6 @@ const PlantList = props => {
   const [input, setInput] = useState("");
   const [plants, setPlants] = useState([]);
 
-  // Add use Effect with axiosWithAuth here to filter data:
-
   useEffect(() => {
     axiosWithAuth()
       .get("/api/plants")
