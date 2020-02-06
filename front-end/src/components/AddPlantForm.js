@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
+import { axiosWithAuth } from "../utils/axiosWithAuth";
+import * as Yup from "yup";
 import {
   InputDiv,
   InputLabel,
@@ -25,43 +27,40 @@ const AddPlantForm = props => {
   const { register, handleSubmit, errors } = useForm();
 
   const onSubmit = event => {
-    setPlant({ ...plant, [event.target.name]: event.target.value });
+    console.log("this event", event);
+
+    axiosWithAuth()
+      .post(`/api/users/plants`, event)
+      .then(res => {
+        console.log("this is the data after then", res);
+        setPlant(res.data);
+      })
+      .catch(err => {
+        console.error(err);
+      });
   };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <InputDiv>
+      {/* <InputDiv>
         <InputLabel htmlFor="nickname">Plant Nickname</InputLabel>
-        <input
-          id="nickname"
-          type="text"
-          name="nickname"
-          value={plant.nickname}
-          ref={register}
-        />
-      </InputDiv>
+        <input id="nickname" type="text" name="nickname" ref={register} />
+      </InputDiv> */}
 
       <InputDiv>
         <InputLabel htmlFor="species">Plant Species</InputLabel>
-        <input
-          id="species"
-          type="text"
-          name="species"
-          value={plant.species}
-          ref={register}
-        />
+        <input id="species" type="text" name="species" ref={register} />
         {errors.species && (
           <ErrorMessage>{errors.species.message}</ErrorMessage>
         )}
       </InputDiv>
 
-      <InputDiv>
+      {/* <InputDiv>
         <InputLabel htmlFor="h2oFrequency">Water every:</InputLabel>
         <select
           id="h2oFrequency"
           type="select"
           name="h2ofrequency"
-          value={plant.h2oFrequency}
           ref={register}
         >
           <option value="1">Twice a day</option>
@@ -72,7 +71,7 @@ const AddPlantForm = props => {
         {errors.h2oFrequency && (
           <ErrorMessage>{errors.h2oFrequency.message}</ErrorMessage>
         )}
-      </InputDiv>
+      </InputDiv> */}
 
       <LoginButton>Add new plant</LoginButton>
     </form>

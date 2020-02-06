@@ -1,4 +1,6 @@
 import React from "react";
+import { axiosWithAuth } from "../utils/axiosWithAuth";
+import axios from "axios";
 // import { Form, Button } from 'reactstrap';
 import { useForm } from "react-hook-form";
 import * as Yup from "yup";
@@ -29,23 +31,34 @@ const ValidationSchema = Yup.object().shape({
     .min(5, "Must be 5 characters or longer")
 });
 
-const RegistrationForm = () => {
+const RegistrationForm = props => {
   const { handleSubmit, register, errors } = useForm({
     validationSchema: ValidationSchema
   });
-  const onSubmit = values => {
-    console.log(values);
+  const onSubmit = event => {
+    console.log(event);
+    axiosWithAuth
+      .post(
+        "https://water-my-plant-9000.herokuapp.com/api/auth/register",
+        event
+      )
+      .then(res => {
+        console.log(res);
+        localStorage.setItem("token", res.data.token);
+        props.history.push("/plants");
+      })
+      .catch(err => console.log(err));
   };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <InputDiv>
-        <InputLabel htmlFor="first_name">Name</InputLabel>s
+      {/* <InputDiv>
+        <InputLabel htmlFor="first_name">Name</InputLabel>
         <input id="first_name" name="first_name" type="text" ref={register} />
         {errors.first_name && (
           <ErrorMessage>{errors.first_name.message}</ErrorMessage>
         )}
-      </InputDiv>
+      </InputDiv> */}
 
       <InputDiv>
         <InputLabel htmlFor="username">Create a Username</InputLabel>
@@ -55,19 +68,13 @@ const RegistrationForm = () => {
         )}
       </InputDiv>
 
-      <InputDiv>
+      {/* <InputDiv>
         <InputLabel htmlFor="phonenumber">Mobile Number</InputLabel>
         <input id="phonenumber" name="phonenumber" type="text" ref={register} />
         {errors.phonenumber && (
           <ErrorMessage>{errors.phonenumber.message}</ErrorMessage>
         )}
-      </InputDiv>
-
-      <InputDiv>
-        <InputLabel htmlFor="email">Mobile Number</InputLabel>
-        <input id="email" name="email" type="text" ref={register} />
-        {errors.email && <ErrorMessage>{errors.email.message}</ErrorMessage>}
-      </InputDiv>
+      </InputDiv> */}
 
       <InputDiv>
         <InputLabel htmlFor="password">Password</InputLabel>

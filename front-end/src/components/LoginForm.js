@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import { useForm } from "react-hook-form";
 import * as Yup from "yup";
-import RegistrationForm from "./RegistrationForm";
+
 import {
   InputDiv,
   InputLabel,
@@ -28,7 +28,7 @@ const LoginForm = props => {
       )
       .then(res => {
         console.log(res);
-        localStorage.setItem("token", res.data.access_token);
+        localStorage.setItem("token", res.data.token);
         props.history.push("/plants");
       })
       .catch(err => console.log(err));
@@ -52,16 +52,7 @@ const LoginForm = props => {
         )}
       </InputDiv>
 
-      <LoginButton
-        // onClick={() => {
-        //   const values = getValues();
-        //   setValues({ ...values, values });
-        //   console.log("values", values);
-        // }}
-        type="submit"
-      >
-        Login
-      </LoginButton>
+      <LoginButton type="submit">Login</LoginButton>
     </form>
   );
 };

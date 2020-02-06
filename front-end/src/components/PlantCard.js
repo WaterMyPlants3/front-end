@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
+import React, { useState, useEffect } from "react";
 
 import styled from "styled-components";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
@@ -14,10 +13,10 @@ const CardStyle = styled.div`
 
 const initialPlant = {
   id: "",
-  name: "",
-  nickname: "",
-  species: "",
-  h2oFrequency: 0
+  // name: "",
+  // nickname: "",
+  species: ""
+  // h2oFrequency: 0
 };
 
 const PlantCard = props => {
@@ -28,71 +27,102 @@ const PlantCard = props => {
     setEditing(true);
     setPlantToEdit(plant);
   };
+  console.log("plant to edit", props.plants);
+
+  useEffect(() => {
+    const plantToUpdate = props.plants.find(
+      plant => `${plant.id}` === plantToEdit.id
+    );
+    if (plantToEdit) {
+      setPlantToEdit(plantToUpdate);
+    }
+  }, []);
 
   const saveEdit = event => {
+    event.preventDefault();
     axiosWithAuth()
       .put(`/api/plants/${plantToEdit.id}`, plantToEdit)
       .then(res => {
-        console.log(res.data);
-        props.plants.map(p => {
-          if (p.id === plantToEdit.id) {
-            setPlantToEdit({
-              [event.target.name]: event.target.value
-            });
-          }
-        });
+        console.log("to edit", res);
+        // window.location.reload();
+        setEditing(false);
       })
       .catch(err => console.log(err));
   };
 
-  const deletePlant = plant => {
+  const deletePlant = (e, id) => {
+    e.preventDefault();
+    console.log("delete button is working", id);
+
     axiosWithAuth()
-      .delete(`//api/plants/${plant.id}`)
+      .delete(`/api/plants/${id}`)
       .then(res => {
         console.log("after deleting", res);
-        const deletedPlant = props.plants.filter(
-          plant => plant.id !== plant.id
-        );
-        props.setPlants(deletedPlant);
+        const updatedPlants = props.plants.filter(plant => plant.id !== id);
+        props.setPlants(updatedPlants);
+      })
+      .catch(err => {
+        console.log("Error: Delete Request was not returned!", err);
       });
   };
 
-  //   const history = useHistory();
-
-  //   function edit() {
-  //     history.push(`/plants/${props.plantID}`);
-  //   };
-
   return (
-    <CardStyle key={props.id} onClick={() => editPlant(props.plant)}>
-      <div className="recipe-item" key={props.plant.id}>
-        {/* <h3>{props.plant.nickname}</h3> */}
-        <h3>{props.plant.species}</h3>
-        {/* <h3>{props.plant.h2oFrequency}</h3> */}
-        {/* <button onClick={edit}>Edit</button> */}
-      </div>
-      <span>
-        <span
-          className="delete"
-          onClick={e => {
-            e.stopPropagation();
-            deletePlant(props.plant);
-          }}
-        >
-          X
+    <>
+      <CardStyle key={props.id}>
+        <div className="plant-item" key={props.plant.id}>
+          {/* <h3>{props.plant.nickname}</h3> */}
+          <h3>Species: {props.plant.species}</h3>
+          {/* <h3>{props.plant.h2oFrequency}</h3> */}
+          {/* <button onClick={edit}>Edit</button> */}
+        </div>
+        <span>
+          ID:
+          {""}
+          {props.id}
         </span>
-        {""}
-        {props.id}
-      </span>
-      <div className="buttons">
-        <button onClick={() => props.deletePlant(props.plant.id)}>
-          Delete Recipe
-        </button>
-        <button onClick={() => props.selectPlant(props.plant)}>
-          Update Recipe
-        </button>
+        <div className="buttons">
+          <button onClick={e => deletePlant(e, props.plant.id)}>
+            Delete Plant
+          </button>
+          <button key={props.plant.id} onClick={() => editPlant(props.plant)}>
+            Update Plant
+          </button>
+        </div>
+      </CardStyle>
+
+      <div className="spacer">
+        {editing && (
+          <form onSubmit={saveEdit}>
+            <legend>edit plant</legend>
+            <label>
+              plant name:
+              <input
+                onChange={e =>
+                  setPlantToEdit({ ...plantToEdit, species: e.target.value })
+                }
+                value={plantToEdit.species}
+              />
+            </label>
+            {/* <label>
+              Species:
+              <input
+                onChange={e =>
+                  setPlantToEdit({
+                    ...plantToEdit,
+                    species: e.target.value
+                  })
+                }
+                value={plantToEdit.species}
+              />
+            </label> */}
+            <div className="button-row">
+              <button type="submit">save</button>
+              <button onClick={() => setEditing(false)}>cancel</button>
+            </div>
+          </form>
+        )}
       </div>
-    </CardStyle>
+    </>
   );
 };
 export default PlantCard;
