@@ -13,28 +13,10 @@ const InputContainer = styled.div`
   // border: 2px solid grey;
 `;
 
-// const RowOneStyling = styled.input`
-//   width: 28%;
-//   height: 2rem;
-//   border-radius: 10px;
-//   font-size: 1.6rem;
-//   font-family: "Lucida Casual", "Comic Sans MS";
-//   padding: 1.5%;
-//   border: 1px solid white;
-//   margin-top: 3%;
-//   outline: none;
-
-//   &:focus {
-//     outline: none;
-//   }
-// `;
-
-const TestAddPlant = () => {
+const TestAddPlant = props => {
   const [plant, setPlant] = useState({
-    // nickname: "",
-    species: "",
-    //    h2oFrequency: "",
-    id: Date.now()
+    id: Date.now(),
+    species: ""
   });
 
   const addPlant = event => {
@@ -43,7 +25,9 @@ const TestAddPlant = () => {
       .post(`/api/plants`, plant)
       .then(res => {
         console.log("this is the data after then", res);
-        window.location.reload();
+        const updatedPlants = [...props.plant, plant];
+        props.setPlants(updatedPlants);
+        console.log("updated", updatedPlants);
       })
       .catch(err => {
         console.error(err);
@@ -63,7 +47,7 @@ const TestAddPlant = () => {
             id="species"
             type="text"
             name="species"
-            placeholder="name"
+            placeholder="Species"
             value={plant.name}
             onChange={handleChanges}
             autoComplete="off"

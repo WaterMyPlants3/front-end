@@ -60,7 +60,7 @@ const PlantList = props => {
           );
         })}
       </ListStyle>
-      <TestAddForm />
+      <TestAddForm plants={plants} setPlants={setPlants} />
     </section>
   );
 };

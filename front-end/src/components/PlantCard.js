@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 
 import styled from "styled-components";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
+import { LoginBox, AppTitle } from "../styled/StyledComponents_LoginForm";
 
 const CardStyle = styled.div`
   text-align: center;
@@ -39,7 +40,6 @@ const PlantCard = props => {
     setEditing(true);
     setPlantToEdit(plant);
   };
-  console.log("plant to edit", props.plants);
 
   useEffect(() => {
     const plantToUpdate = props.plants.find(
@@ -105,9 +105,9 @@ const PlantCard = props => {
       <div className="spacer">
         {editing && (
           <form onSubmit={saveEdit}>
-            <legend>edit plant</legend>
+            <AppTitle>edit plant</AppTitle>
             <label>
-              plant name:
+              Species:
               <input
                 onChange={e =>
                   setPlantToEdit({ ...plantToEdit, species: e.target.value })
