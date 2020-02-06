@@ -56,7 +56,7 @@ const PlantCard = props => {
       .put(`/api/plants/${plantToEdit.id}`, plantToEdit)
       .then(res => {
         console.log("to edit", res);
-        // window.location.reload();
+        window.location.reload();
         setEditing(false);
       })
       .catch(err => console.log(err));
