@@ -1,14 +1,15 @@
 import React from "react";
-import { axiosWithAuth } from "../utils/axiosWithAuth";
-import axios from "axios";
-// import { Form, Button } from 'reactstrap';
+import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import { axiosWithAuth } from "../utils/axiosWithAuth";
 import * as Yup from "yup";
 import {
   InputDiv,
   InputLabel,
   ErrorMessage,
-  LoginButton
+  LoginButton,
+  LoginBox,
+  AppTitle
 } from "../styled/StyledComponents_LoginForm";
 
 const ValidationSchema = Yup.object().shape({
@@ -51,41 +52,45 @@ const RegistrationForm = props => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      {/* <InputDiv>
-        <InputLabel htmlFor="first_name">Name</InputLabel>
-        <input id="first_name" name="first_name" type="text" ref={register} />
-        {errors.first_name && (
-          <ErrorMessage>{errors.first_name.message}</ErrorMessage>
-        )}
-      </InputDiv> */}
+    <LoginBox>
+      <AppTitle>Water My Plants</AppTitle>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <InputDiv>
+          <InputLabel htmlFor="first_name">Name</InputLabel>
+          <input id="first_name" name="first_name" type="text" ref={register} />
+          {errors.first_name && (
+            <ErrorMessage>{errors.first_name.message}</ErrorMessage>
+          )}
+        </InputDiv>
 
-      <InputDiv>
-        <InputLabel htmlFor="username">Create a Username</InputLabel>
-        <input id="username" name="username" type="text" ref={register} />
-        {errors.username && (
-          <ErrorMessage>{errors.username.message}</ErrorMessage>
-        )}
-      </InputDiv>
+        <InputDiv>
+          <InputLabel htmlFor="username">Create a Username</InputLabel>
+          <input id="username" name="username" type="text" ref={register} />
+          {errors.username && (
+            <ErrorMessage>{errors.username.message}</ErrorMessage>
+          )}
+        </InputDiv>
 
-      {/* <InputDiv>
-        <InputLabel htmlFor="phonenumber">Mobile Number</InputLabel>
-        <input id="phonenumber" name="phonenumber" type="text" ref={register} />
-        {errors.phonenumber && (
-          <ErrorMessage>{errors.phonenumber.message}</ErrorMessage>
-        )}
-      </InputDiv> */}
+        <InputDiv>
+          <InputLabel htmlFor="email">Email</InputLabel>
+          <input id="email" name="email" type="text" ref={register} />
+          {errors.email && <ErrorMessage>{errors.email.message}</ErrorMessage>}
+        </InputDiv>
 
-      <InputDiv>
-        <InputLabel htmlFor="password">Password</InputLabel>
-        <input id="password" name="password" type="password" ref={register} />
-        {errors.password && (
-          <ErrorMessage>{errors.password.message}</ErrorMessage>
-        )}
-      </InputDiv>
+        <InputDiv>
+          <InputLabel htmlFor="password">Password</InputLabel>
+          <input id="password" name="password" type="password" ref={register} />
+          {errors.password && (
+            <ErrorMessage>{errors.password.message}</ErrorMessage>
+          )}
+        </InputDiv>
 
-      <LoginButton type="submit">Create Account</LoginButton>
-    </form>
+        <LoginButton type="submit">Create Account</LoginButton>
+      </form>
+      <Link className="sign_up_link" to="/login">
+        Already have an account? Login
+      </Link>
+    </LoginBox>
   );
 };
 

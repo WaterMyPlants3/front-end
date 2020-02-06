@@ -6,7 +6,8 @@ import {
   InputDiv,
   InputLabel,
   ErrorMessage,
-  LoginButton
+  LoginButton,
+  LoginBox
 } from "../styled/StyledComponents_LoginForm";
 
 // const ValidationSchema = Yup.object().shape({
@@ -75,6 +76,7 @@ const AddPlantForm = props => {
 
       <LoginButton>Add new plant</LoginButton>
     </form>
+    // </LoginBox>
   );
 };
 

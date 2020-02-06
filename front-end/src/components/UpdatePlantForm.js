@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useForm } from 'react-hook-form';
 import * as Yup from 'yup';
-
 import {
-  ButtonStyling,
-  AddPlantContainer,
-  InputContainer,
-  RowOneStyling,
-  ButtonContainer
-} from "../styled/formStyled";
+  InputDiv,
+  InputLabel,
+  ErrorMessage,
+  LoginButton,
+  LoginBox,
+} from "../styled/StyledComponents_LoginForm";
 import { useParams } from "react-router-dom";
 import axios from 'axios';
 
@@ -71,55 +70,59 @@ const UpdatePlantForm = (props) => {
   }
 
   return (
-    <AddPlantContainer>
-      <InputContainer>
+      <LoginBox>
         <form onSubmit={handleSubmit(onSubmit)}>
-          <RowOneStyling
-            id="name"
-            type="text"
-            name="name"
-            placeholder="name"
-            value={props.plant.name}
-            onChange={handleChange}
-            ref={register}
-          />
-          {errors.name ? (<span>{errors.name.message}</span>) : null}
-          <RowOneStyling
-            id="nickname"
-            type="text"
-            name="nickname"
-            placeholder="nickname"
-            value={props.plant.nickname}
-            onChange={handleChange}
-            ref={register}
-          />
-          {errors.nickname ? (<span>{errors.nickname.message}</span>) : null}
-          <RowOneStyling
-            id="species"
-            type="text"
-            name="species"
-            placeholder="species"
-            value={props.plant.species}
-            onChange={handleChange}
-            ref={register}
-          />
-          {errors.species ? (<span>{errors.species.message}</span>) : null}
-          <RowOneStyling
-            id="h2oFrequency"
-            type="text"
-            name="h2ofrequency"
-            placeholder="h2oFrequency"
-            value={props.plant.h2oFrequency}
-            onChange={handleChange}
-            ref={register}
-          />
+          <InputDiv>
+            <InputLabel htmlFor="name">Name</InputLabel>
+            <input
+              id="name"
+              type="text"
+              name="name"
+              value={props.plant.name}
+              onChange={handleChange}
+              ref={register}
+            />
+          </InputDiv>
+          {errors.name ? (<ErrorMessage>{errors.name.message}</ErrorMessage>) : null}
+          <InputDiv>
+            <InputLabel htmlFor="nickname">Nickname</InputLabel>
+            <input
+              id="nickname"
+              type="text"
+              name="nickname"
 
-          <ButtonContainer>
-            <ButtonStyling>Update Plant</ButtonStyling>
-          </ButtonContainer>
+              value={props.plant.nickname}
+              onChange={handleChange}
+              ref={register}
+            />
+          </InputDiv>
+          {errors.nickname ? (<ErrorMessage>{errors.nickname.message}</ErrorMessage>) : null}
+          <InputDiv>
+            <InputLabel htmlFor="species">Species</InputLabel>
+            <input
+              id="species"
+              type="text"
+              name="species"
+              value={props.plant.species}
+              onChange={handleChange}
+              ref={register}
+            />
+          </InputDiv>
+          {errors.species ? (<ErrorMessage>{errors.species.message}</ErrorMessage>) : null}
+          <InputDiv>
+            <InputLabel htmlFor="h2oFrequency">Water every:</InputLabel>
+            <input
+              id="h2oFrequency"
+              type="text"
+              name="h2ofrequency"
+              value={props.plant.h2oFrequency}
+              onChange={handleChange}
+              ref={register}
+            />
+          </InputDiv>
+          <LoginButton>Update Plant</LoginButton>
         </form>
-      </InputContainer>
-    </AddPlantContainer>
+      </LoginBox>
   );
 };
 export default UpdatePlantForm;

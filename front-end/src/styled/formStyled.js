@@ -17,7 +17,7 @@ export const InputContainer = styled.div`
 `;
 
 export const RowOneStyling = styled.input`
-  width: 28%;
+  width: 50%;
   height: 2rem;
   border-radius: 10px;
   font-size: 1.6rem;
@@ -38,7 +38,7 @@ export const ButtonContainer = styled.div`
 
 export const ButtonStyling = styled.button`
   text-align: center;
-  background-color: #22283a;
+  background-color: #89cc7c;
   color: white;
   padding: 8px 0px;
   margin: 3%;

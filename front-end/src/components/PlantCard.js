@@ -6,9 +6,21 @@ import { axiosWithAuth } from "../utils/axiosWithAuth";
 const CardStyle = styled.div`
   text-align: center;
   border-radius: 10px;
-  background-color: whitesmoke;
-  font-family: "Lucida Casual", "Comic Sans MS";
-  color: #22283a;
+  background-color: #faf0e6;
+  color: #487346;
+`;
+
+const CardButton = styled.button`
+  margin: 2%;
+  font-size: 0.8rem;
+  background: #487346;
+  color: #faf0e6;
+  border-radius: 10px;
+  &:hover {
+    background: #89cc7c;
+    color: #487346;
+    cursor: pointer;
+  }
 `;
 
 const initialPlant = {
@@ -33,7 +45,7 @@ const PlantCard = props => {
     const plantToUpdate = props.plants.find(
       plant => `${plant.id}` === plantToEdit.id
     );
-    if (plantToEdit) {
+    if (plantToUpdate) {
       setPlantToEdit(plantToUpdate);
     }
   }, []);

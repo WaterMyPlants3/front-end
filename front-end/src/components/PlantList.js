@@ -12,7 +12,7 @@ const ListStyle = styled.div`
   grid-auto-rows: auto;
   grid-gap: 20px;
   grid-auto-flow: rows;
-  background: #3aafa9;
+  background: #89cc7c;
   border-radius: 10px;
   padding: 5%;
   margin: 3%;
@@ -21,8 +21,6 @@ const ListStyle = styled.div`
 const PlantList = props => {
   const [input, setInput] = useState("");
   const [plants, setPlants] = useState([]);
-
-  // Add use Effect with axiosWithAuth here to filter data:
 
   useEffect(() => {
     axiosWithAuth()

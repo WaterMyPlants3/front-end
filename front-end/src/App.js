@@ -102,8 +102,6 @@ function App() {
 
           <PrivateRoute exact path="/plants" component={PlantList} />
         </Switch>
-
-        {/* <AddPlantForm /> */}
       </Router>
     </div>
   );
