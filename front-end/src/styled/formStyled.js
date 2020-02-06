@@ -17,13 +17,13 @@ export const InputContainer = styled.div`
 `;
 
 export const RowOneStyling = styled.input`
-  width: 50%;
-  height: 2rem;
+  width: 40%;
+  height: 1rem;
   border-radius: 10px;
-  font-size: 1.6rem;
+  font-size: 1.2rem;
   font-family: "Lucida Casual", "Comic Sans MS";
   padding: 1.5%;
-  border: 1px solid white;
+  border: 1px solid green;
   margin-top: 3%;
   outline: none;
 

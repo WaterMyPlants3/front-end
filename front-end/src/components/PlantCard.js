@@ -26,10 +26,10 @@ const CardButton = styled.button`
 
 const initialPlant = {
   id: "",
-  // name: "",
-  // nickname: "",
-  species: ""
-  // h2oFrequency: 0
+
+  nickName: "",
+  species: "",
+  h2oFrequency: 0
 };
 
 const PlantCard = props => {
@@ -67,7 +67,7 @@ const PlantCard = props => {
     console.log("delete button is working", id);
 
     axiosWithAuth()
-      .delete(`/api/plants/${id}`)
+      .delete(`/api/users/${props.usersPlant}/plants`)
       .then(res => {
         console.log("after deleting", res);
         const updatedPlants = props.plants.filter(plant => plant.id !== id);
@@ -84,6 +84,8 @@ const PlantCard = props => {
         <div className="plant-item" key={props.plant.id}>
           {/* <h3>{props.plant.nickname}</h3> */}
           <h3>Species: {props.plant.species}</h3>
+          <h3>Nick Name: {props.plant.nickName}</h3>
+          <h3>Weekly watering: {props.plant.h2oFrequency} </h3>
           {/* <h3>{props.plant.h2oFrequency}</h3> */}
           {/* <button onClick={edit}>Edit</button> */}
         </div>
@@ -115,18 +117,30 @@ const PlantCard = props => {
                 value={plantToEdit.species}
               />
             </label>
-            {/* <label>
-              Species:
+            <label>
+              Nickname:
               <input
                 onChange={e =>
                   setPlantToEdit({
                     ...plantToEdit,
-                    species: e.target.value
+                    nickname: e.target.value
                   })
                 }
-                value={plantToEdit.species}
+                value={plantToEdit.nickName}
               />
-            </label> */}
+            </label>
+            <label>
+              Water Frequency:
+              <input
+                onChange={e =>
+                  setPlantToEdit({
+                    ...plantToEdit,
+                    h2oFrequency: e.target.value
+                  })
+                }
+                value={plantToEdit.h2oFrequency}
+              />
+            </label>
             <div className="button-row">
               <button type="submit">save</button>
               <button onClick={() => setEditing(false)}>cancel</button>

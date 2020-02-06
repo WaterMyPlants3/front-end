@@ -85,7 +85,7 @@ const NavBar = () => {
         Home
       </a>
       <a
-        href="https://watermyplants3.github.io/marketing-ui/"
+        href="https://watermyplants3.github.io/marketing-ui/about.html"
         ref={e => (about = e)}
         onMouseEnter={scaleUp2}
         onMouseLeave={scaleDown2}
