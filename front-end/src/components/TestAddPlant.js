@@ -1,11 +1,15 @@
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
+
 import styled from "styled-components";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
 import {
+  InputDiv,
+  LoginBox,
+  AppTitle
+} from "../styled/StyledComponents_LoginForm";
+import {
   ButtonContainer,
   ButtonStyling,
-  AddPlantContainer,
   RowOneStyling
 } from "../styled/formStyled";
 
@@ -54,46 +58,54 @@ const TestAddPlant = props => {
   };
 
   return (
-    <AddPlantContainer>
+    <LoginBox>
       <InputContainer>
         <form onSubmit={event => addPlant(event)}>
-          <RowOneStyling
-            id="species"
-            type="text"
-            name="species"
-            placeholder="Species"
-            value={plant.name}
-            onChange={handleChanges}
-            autoComplete="off"
-            border="none"
-          />
-          <RowOneStyling
-            id="nickName"
-            type="text"
-            name="nickName"
-            placeholder="nickName"
-            value={plant.nickName}
-            onChange={handleChanges}
-            autoComplete="off"
-            border="none"
-          />
-          <RowOneStyling
-            id="h2oFrequency"
-            type="text"
-            name="h2oFrequency"
-            placeholder="Times a week?"
-            value={plant.h2oFrequency}
-            onChange={handleChanges}
-            autoComplete="off"
-            border="none"
-          />
+          <AppTitle>New Plant</AppTitle>
+          <InputDiv>
+            <RowOneStyling
+              id="species"
+              type="text"
+              name="species"
+              placeholder="Species"
+              value={plant.name}
+              onChange={handleChanges}
+              autoComplete="off"
+              border="none"
+            />
+          </InputDiv>
+          <InputDiv>
+            <RowOneStyling
+              id="nickName"
+              type="text"
+              name="nickName"
+              placeholder="nickName"
+              value={plant.nickName}
+              onChange={handleChanges}
+              autoComplete="off"
+              border="none"
+            />
+          </InputDiv>
+          <InputDiv>
+            <RowOneStyling
+              id="h2oFrequency"
+              type="text"
+              name="h2oFrequency"
+              placeholder="Times
+            a week?"
+              value={plant.h2oFrequency}
+              onChange={handleChanges}
+              autoComplete="off"
+              border="none"
+            />
+          </InputDiv>
 
           <ButtonContainer>
             <ButtonStyling type="submit">Add Plant</ButtonStyling>
           </ButtonContainer>
         </form>
       </InputContainer>
-    </AddPlantContainer>
+    </LoginBox>
   );
 };
 

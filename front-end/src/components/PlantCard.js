@@ -85,7 +85,7 @@ const PlantCard = props => {
           {/* <h3>{props.plant.nickname}</h3> */}
           <h3>Species: {props.plant.species}</h3>
           <h3>Nick Name: {props.plant.nickName}</h3>
-          <h3>h2oFrequency: {props.plant.h2oFrequency} </h3>
+          <h3>Weekly watering: {props.plant.h2oFrequency} </h3>
           {/* <h3>{props.plant.h2oFrequency}</h3> */}
           {/* <button onClick={edit}>Edit</button> */}
         </div>
