@@ -4,6 +4,7 @@ import AddPlantForm from "./AddPlantForm";
 import PlantCard from "./PlantCard";
 import SearchBar from "./SearchBar";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
+import TestAddForm from "./TestAddPlant";
 
 const ListStyle = styled.div`
   display: grid;
@@ -11,7 +12,7 @@ const ListStyle = styled.div`
   grid-auto-rows: auto;
   grid-gap: 20px;
   grid-auto-flow: rows;
-  background: #89CC7C;
+  background: #89cc7c;
   border-radius: 10px;
   padding: 5%;
   margin: 3%;
@@ -32,7 +33,7 @@ const PlantList = props => {
         setPlants(searchPlant);
       })
       .catch(err => console.log("what went wrong?", err));
-  }, []);
+  }, [input]);
 
   const handleInputChange = event => {
     event.preventDefault();
@@ -42,6 +43,7 @@ const PlantList = props => {
   return (
     <section className="plants-list">
       <SearchBar handleInputChange={handleInputChange} />
+      <h1>My Plants</h1>
       <ListStyle>
         {plants.map((plnt, index) => {
           return (
@@ -52,13 +54,13 @@ const PlantList = props => {
               id={plnt.id} //string
               species={plnt.species} //string
               plants={plants} // array
-              plant={plnt}
+              plant={plnt} // plant object
               setPlants={setPlants}
             />
           );
         })}
       </ListStyle>
-      <AddPlantForm />
+      <TestAddForm plants={plants} setPlants={setPlants} />
     </section>
   );
 };

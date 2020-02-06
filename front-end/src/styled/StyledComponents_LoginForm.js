@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const InputDiv = styled.div`
   width: 80%;
@@ -12,11 +12,11 @@ export const LoginButton = styled.button`
   border-radius: 15px;
   width: 30%;
   font-size: 1.2rem;
-  background: #FAF0E6;
+  background: #faf0e6;
   color: #487346;
   &:hover {
     background: #487346;
-    color: #FAF0E6;
+    color: #faf0e6;
   }
 `;
 
@@ -27,7 +27,7 @@ export const InputLabel = styled.label`
 
 export const ErrorMessage = styled.div`
   color: red;
-  font-size: .8rem;
+  font-size: 0.8rem;
   margin-top: 1%;
 `;
 
