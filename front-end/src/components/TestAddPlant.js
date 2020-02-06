@@ -25,31 +25,26 @@ const TestAddPlant = props => {
     h2oFrequency: ""
   });
 
-  const addPlant = async event => {
+  const addPlant = event => {
     event.preventDefault();
-    try {
-      const fetchData = await axiosWithAuth().post(`/api/plants`, {
-        id: plant.id,
-        species: plant.species
-      });
+    axiosWithAuth()
+      .post(`/api/users/2/plants`, {
+        species: plant.species,
+        h2oFrequency: plant.h2oFrequency
+      })
+      .then(res => {
+        console.log("update data", res);
+        const updatedPlants = [...props.plants, plant];
+        props.setPlants(updatedPlants);
+        console.log("update file", updatedPlants);
+      })
+      .catch(err => console.log(err));
 
-      console.log("this is the data after then", fetchData);
-      // const updatedPlants = [...props.plants, plant];
-      // props.setPlants(updatedPlants);
-      // console.log("updated", updatedPlants);
-      const localStorageToken = JSON.parse(localStorage.getItem("token"));
-      const updateData = await axiosWithAuth().post(
-        `/api/users/${localStorageToken.id}/plants`,
-        plant
-      );
-
-      console.log("this is the data after then", updateData);
-      const updatedPlants = [...props.plants, plant];
-      props.setPlants(updatedPlants);
-      console.log("updated", updatedPlants);
-    } catch (err) {
-      console.log(err);
-    }
+    //   const localStorageToken = JSON.parse(localStorage.getItem("token"));
+    //   const updateData = await axiosWithAuth().post(
+    //     ``,
+    //     plant
+    //   );
   };
 
   const handleChanges = event => {
