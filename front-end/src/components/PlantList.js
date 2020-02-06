@@ -21,12 +21,15 @@ const ListStyle = styled.div`
 const PlantList = props => {
   const [input, setInput] = useState("");
   const [plants, setPlants] = useState([]);
+  const [usersPlant, setUsersPlant] = useState([]);
+  //   const userId = JSON.parse(localStorage.getItem("token"));
 
   useEffect(() => {
     axiosWithAuth()
-      .get("/api/plants")
+      .get(`/api/users/2/plants`)
       .then(response => {
         console.log(response.data);
+        setUsersPlant([...response.data]);
         const searchPlant = response.data.filter(plnt =>
           plnt.species.toLowerCase().includes(input.toLocaleLowerCase())
         );
@@ -45,7 +48,7 @@ const PlantList = props => {
       <SearchBar handleInputChange={handleInputChange} />
       <h1>My Plants</h1>
       <ListStyle>
-        {plants.map((plnt, index) => {
+        {usersPlant.map((plnt, index) => {
           return (
             <PlantCard
               key={index}
@@ -56,6 +59,8 @@ const PlantList = props => {
               plants={plants} // array
               plant={plnt} // plant object
               setPlants={setPlants}
+              usersPlant={plnt.users_plants}
+              setUsersPlant={setUsersPlant}
             />
           );
         })}
