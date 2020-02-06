@@ -53,7 +53,7 @@ const PlantCard = props => {
   const saveEdit = event => {
     event.preventDefault();
     axiosWithAuth()
-      .put(`/api/plants/${plantToEdit.id}`, plantToEdit)
+      .put(`/api/users/2/plants`, plantToEdit)
       .then(res => {
         console.log("to edit", res);
         window.location.reload();
