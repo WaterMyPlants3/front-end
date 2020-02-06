@@ -11,6 +11,8 @@ import {
   AppTitle
 } from "../styled/StyledComponents_LoginForm";
 
+
+///////////////VALIDATION
 const ValidationSchema = Yup.object().shape({
   first_name: Yup.string()
     .required("Name is required")
@@ -19,8 +21,6 @@ const ValidationSchema = Yup.object().shape({
   username: Yup.string()
     .required("Username is required")
     .min(2, "Must be 2 characters or longer"),
-
-  phonenumber: Yup.string().required("Phone number required"),
 
   email: Yup.string()
     .email("Must be valid email address")
@@ -31,21 +31,49 @@ const ValidationSchema = Yup.object().shape({
     .min(5, "Must be 5 characters or longer")
 });
 
+
+
+//////////////COMPONENT
 const RegistrationForm = () => {
+
   const { handleSubmit, register, errors } = useForm({
     validationSchema: ValidationSchema
   });
-  const onSubmit = values => {
-    console.log(values);
+
+  const [user, setUser] = useState({
+    first_name: "",
+    username: "",
+    email: "",
+    password: ""
+  });
+
+  
+  
+  const onSubmit = event => {
+    event.preventDefault();
+    axios.post("api/auth/login", user)
+         .then(response => console.log(response))
+         .catch(error => console.log('axios didn\'t work', error))
   };
 
+  ///////////////FORM RETURN
   return (
+
     <LoginBox>
+
       <AppTitle>Water My Plants</AppTitle>
       <form onSubmit={handleSubmit(onSubmit)}>
+
+
         <InputDiv>
           <InputLabel htmlFor="first_name">Name</InputLabel>
-          <input id="first_name" name="first_name" type="text" ref={register} />
+          <input 
+          id="first_name" 
+          name="first_name" 
+          type="text"
+          value={user.first_name}
+          ref={register} 
+          />
           {errors.first_name && (
             <ErrorMessage>{errors.first_name.message}</ErrorMessage>
           )}
@@ -53,7 +81,13 @@ const RegistrationForm = () => {
 
         <InputDiv>
           <InputLabel htmlFor="username">Create a Username</InputLabel>
-          <input id="username" name="username" type="text" ref={register} />
+          <input 
+          id="username" 
+          name="username" 
+          type="text" 
+          value={user.username}
+          ref={register} 
+          />
           {errors.username && (
             <ErrorMessage>{errors.username.message}</ErrorMessage>
           )}
@@ -61,23 +95,38 @@ const RegistrationForm = () => {
 
         <InputDiv>
           <InputLabel htmlFor="email">Email</InputLabel>
-          <input id="email" name="email" type="text" ref={register} />
+          <input 
+          id="email" 
+          name="email" 
+          type="text"
+          value={user.email} 
+          ref={register} 
+          />
           {errors.email && <ErrorMessage>{errors.email.message}</ErrorMessage>}
         </InputDiv>
 
         <InputDiv>
           <InputLabel htmlFor="password">Password</InputLabel>
-          <input id="password" name="password" type="password" ref={register} />
+          <input 
+          id="password" 
+          name="password" 
+          type="password" 
+          value={user.password}
+          ref={register} 
+          />
           {errors.password && (
             <ErrorMessage>{errors.password.message}</ErrorMessage>
           )}
         </InputDiv>
 
         <LoginButton type="submit">Create Account</LoginButton>
+
       </form>
+
       <Link className="sign_up_link" to="/login">
         Already have an account? Login
       </Link>
+
     </LoginBox>
   );
 };
