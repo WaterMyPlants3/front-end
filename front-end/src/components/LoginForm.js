@@ -27,9 +27,9 @@ const LoginForm = props => {
         `grant_type=password&username=${event.username}&password=${event.password}`
       )
       .then(res => {
-        console.log(res.data);
+        console.log(res);
         localStorage.setItem("token", res.data.token);
-        props.history.push("/plants/");
+        props.history.push("/plants");
       })
       .catch(err => console.log(err));
   };

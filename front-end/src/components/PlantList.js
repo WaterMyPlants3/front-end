@@ -31,10 +31,6 @@ const PlantList = props => {
       .then(response => {
         console.log(response.data);
         setUsersPlant([...response.data]);
-        // const searchPlant = response.data.filter(plnt =>
-        //   plnt.species.toLowerCase().includes(input.toLowerCase())
-        // );
-        // setPlants(searchPlant);
       })
       .catch(err => console.log("what went wrong?", err));
   }, []);
@@ -46,10 +42,6 @@ const PlantList = props => {
   };
 
   const deletePlant = (e, users_plants, id) => {
-    // e.preventDefault();
-    // console.log("delete button is working", id);
-    // const updatedPlants = cardContext.filter(plant => plant.id !== id);
-    // props.setPlants(updatedPlants);
     axiosWithAuth()
       .delete(`/api/users/${users_plants}/plants`)
       .then(res => {
