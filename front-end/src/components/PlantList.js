@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import AddPlantForm from "./AddPlantForm";
 import { PlantCardContext } from "../utils/context";
 import PlantCard from "./PlantCard";
 import SearchBar from "./SearchBar";
@@ -23,7 +22,6 @@ const PlantList = props => {
   const [input, setInput] = useState("");
   const [plants, setPlants] = useState([]);
   const [usersPlant, setUsersPlant] = useState([]);
-  //   const userId = JSON.parse(localStorage.getItem("token"));
 
   useEffect(() => {
     axiosWithAuth()
@@ -73,14 +71,3 @@ const PlantList = props => {
   );
 };
 export default PlantList;
-
-// key={index}
-// plantToEdit={props.plantToEdit}
-// // name={plnt.name}
-// id={plnt.id} //string
-// species={plnt.species} //string
-// plants={plants} // array
-// plant={plnt} // plant object
-// setPlants={setPlants}
-// usersPlant={plnt.users_plants}
-// setUsersPlant={setUsersPlant}

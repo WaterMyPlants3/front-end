@@ -39,12 +39,6 @@ const TestAddPlant = props => {
         console.log("update file", updatedPlants);
       })
       .catch(err => console.log(err));
-
-    //   const localStorageToken = JSON.parse(localStorage.getItem("token"));
-    //   const updateData = await axiosWithAuth().post(
-    //     ``,
-    //     plant
-    //   );
   };
 
   const handleChanges = event => {

@@ -41,15 +41,6 @@ const PlantCard = props => {
     setPlantToEdit(plant);
   };
 
-  // useEffect(() => {
-  //   const plantToUpdate = cardContext.find(
-  //     plant => `${plant.id}` === plantToEdit.id
-  //   );
-  //   if (plantToUpdate) {
-  //     setPlantToEdit(plantToUpdate);
-  //   }
-  // }, []);
-
   const saveEdit = event => {
     event.preventDefault();
     axiosWithAuth()
@@ -65,12 +56,9 @@ const PlantCard = props => {
     <>
       <CardStyle key={cardContext.id}>
         <div className="plant-item" key={cardContext.id}>
-          {/* <h3>{cardContext.nickname}</h3> */}
           <h3>Species: {cardContext.species}</h3>
           <h3>Nick Name: {cardContext.nickName}</h3>
           <h3>Weekly watering: {cardContext.h2oFrequency} </h3>
-          {/* <h3>{props.plant.h2oFrequency}</h3> */}
-          {/* <button onClick={edit}>Edit</button> */}
         </div>
         <span>
           ID:

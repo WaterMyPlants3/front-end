@@ -45,14 +45,6 @@ const RegistrationForm = props => {
     <LoginBox>
       <AppTitle>Water My Plants</AppTitle>
       <form onSubmit={handleSubmit(onSubmit)}>
-        {/* <InputDiv>
-          <InputLabel htmlFor="first_name">Name</InputLabel>
-          <input id="first_name" name="first_name" type="text" ref={register} />
-          {errors.first_name && (
-            <ErrorMessage>{errors.first_name.message}</ErrorMessage>
-          )}
-        </InputDiv> */}
-
         <InputDiv>
           <InputLabel htmlFor="username">Create a Username</InputLabel>
           <input id="username" name="username" type="text" ref={register} />
@@ -60,12 +52,6 @@ const RegistrationForm = props => {
             <ErrorMessage>{errors.username.message}</ErrorMessage>
           )}
         </InputDiv>
-
-        {/* <InputDiv>
-          <InputLabel htmlFor="email">Email</InputLabel>
-          <input id="email" name="email" type="text" ref={register} />
-          {errors.email && <ErrorMessage>{errors.email.message}</ErrorMessage>}
-        </InputDiv> */}
 
         <InputDiv>
           <InputLabel htmlFor="password">Password</InputLabel>

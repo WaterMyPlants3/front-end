@@ -1,17 +1,13 @@
-<<<<<<< HEAD
 import React, { useState } from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import NavBar from "./components/NavBar";
 import PrivateRoute from "./components/PrivateRoute";
-
 import LoginPage from "./components/LoginPage";
 import "./App.css";
 import UpdatePlantForm from "./components/UpdatePlantForm";
 import PlantList from "./components/PlantList";
 import AddPlantForm from "./components/AddPlantForm";
 import RegistrationForm from "./components/RegistrationForm";
-
-// import TestForm from "./components/TestForm";
 
 function App() {
   const [plant, setPlant] = useState([
@@ -56,7 +52,7 @@ function App() {
     const editPlant = {
       id: plant.id,
       name: plant.name,
-      nickname: plant.nicname,
+      nickname: plant.nickname,
       species: plant.species,
       h2oFrequency: plant.h2oFrequency
     };
@@ -65,54 +61,45 @@ function App() {
 
   return (
     <div className="App">
-      <Router>
-        <NavBar />
-        <Switch>
-          <Route path="/login" component={LoginPage} />
+      <NavBar />
+      <Switch>
+        <Route path="/login" component={LoginPage} />
 
-          <Route
-            path="/plants"
-            render={props => (
-              <div>
-                <PlantList
-                  {...props}
-                  plant={plant}
-                  plantToEdit={plantToEdit}
-                  editPlant={editPlant}
-                  addNewPlant={addNewPlant}
-                />
-              </div>
-            )}
-          />
+        <Route
+          path="/plants"
+          render={props => (
+            <div>
+              <PlantList
+                {...props}
+                plant={plant}
+                plantToEdit={plantToEdit}
+                editPlant={editPlant}
+                addNewPlant={addNewPlant}
+              />
+            </div>
+          )}
+        />
 
-          <Route exact path="/" component={LoginPage} />
+        <Route exact path="/" component={LoginPage} />
 
-          <Route path="/register" component={RegistrationForm} />
-          {/* <Route
-            path="/plants/:userid"
+        <Route path="/register" component={RegistrationForm} />
+        {/* <Route
+            path="/plants/:plantid"
             render={props => (
               <UpdatePlantForm {...props} editPlant={editPlant} plant={plant} />
             )}
           /> */}
-          <Route
-            path="/plants"
-            render={props => (
-              <AddPlantForm {...props} addNewPlant={addNewPlant} />
-            )}
-          />
-          <PrivateRoute path="/plants/:userid" component={PlantList} />
-          <PrivateRoute exact path="/plants" component={PlantList} />
-        </Switch>
-      </Router>
+        <Route
+          path="/plants"
+          render={props => (
+            <AddPlantForm {...props} addNewPlant={addNewPlant} />
+          )}
+        />
+
+        <PrivateRoute exact path="/plants" component={PlantList} />
+      </Switch>
     </div>
   );
-=======
-import React from "react";
-import "./App.css";
-
-function App() {
-  return <div className="App"></div>;
->>>>>>> 46e03535f328468f13ab7b6765bbce2d9ff37035
 }
 
 export default App;
