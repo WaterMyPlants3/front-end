@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import AddPlantForm from "./AddPlantForm";
+import { PlantCardContext } from "../utils/context";
 import PlantCard from "./PlantCard";
 import SearchBar from "./SearchBar";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
@@ -30,17 +31,36 @@ const PlantList = props => {
       .then(response => {
         console.log(response.data);
         setUsersPlant([...response.data]);
-        const searchPlant = response.data.filter(plnt =>
-          plnt.species.toLowerCase().includes(input.toLocaleLowerCase())
-        );
-        setPlants(searchPlant);
+        // const searchPlant = response.data.filter(plnt =>
+        //   plnt.species.toLowerCase().includes(input.toLowerCase())
+        // );
+        // setPlants(searchPlant);
       })
       .catch(err => console.log("what went wrong?", err));
-  }, [input]);
+  }, []);
 
+  console.log(usersPlant);
   const handleInputChange = event => {
     event.preventDefault();
     setInput(event.target.value);
+  };
+
+  const deletePlant = (e, users_plants, id) => {
+    // e.preventDefault();
+    // console.log("delete button is working", id);
+    // const updatedPlants = cardContext.filter(plant => plant.id !== id);
+    // props.setPlants(updatedPlants);
+    axiosWithAuth()
+      .delete(`/api/users/${users_plants}/plants`)
+      .then(res => {
+        console.log("after deleting", res);
+        // debugger;
+        const updatedPlants = usersPlant.filter(plant => plant.id !== id);
+        setUsersPlant(updatedPlants);
+      })
+      .catch(err => {
+        console.log("Error: Delete Request was not returned!", err);
+      });
   };
 
   return (
@@ -48,20 +68,11 @@ const PlantList = props => {
       <SearchBar handleInputChange={handleInputChange} />
       <h1>My Plants</h1>
       <ListStyle>
-        {usersPlant.map((plnt, index) => {
+        {usersPlant.map(plnt => {
           return (
-            <PlantCard
-              key={index}
-              plantToEdit={props.plantToEdit}
-              // name={plnt.name}
-              id={plnt.id} //string
-              species={plnt.species} //string
-              plants={plants} // array
-              plant={plnt} // plant object
-              setPlants={setPlants}
-              usersPlant={plnt.users_plants}
-              setUsersPlant={setUsersPlant}
-            />
+            <PlantCardContext.Provider value={plnt} key={plnt.id}>
+              <PlantCard deletePlant={deletePlant} />
+            </PlantCardContext.Provider>
           );
         })}
       </ListStyle>
@@ -70,3 +81,14 @@ const PlantList = props => {
   );
 };
 export default PlantList;
+
+// key={index}
+// plantToEdit={props.plantToEdit}
+// // name={plnt.name}
+// id={plnt.id} //string
+// species={plnt.species} //string
+// plants={plants} // array
+// plant={plnt} // plant object
+// setPlants={setPlants}
+// usersPlant={plnt.users_plants}
+// setUsersPlant={setUsersPlant}

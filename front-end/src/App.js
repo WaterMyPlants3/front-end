@@ -88,7 +88,7 @@ function App() {
 
           <Route path="/register" component={RegistrationForm} />
           {/* <Route
-            path="/plants/:plantid"
+            path="/plants/:userid"
             render={props => (
               <UpdatePlantForm {...props} editPlant={editPlant} plant={plant} />
             )}
@@ -99,7 +99,7 @@ function App() {
               <AddPlantForm {...props} addNewPlant={addNewPlant} />
             )}
           />
-
+          <PrivateRoute path="/plants/:userid" component={PlantList} />
           <PrivateRoute exact path="/plants" component={PlantList} />
         </Switch>
       </Router>

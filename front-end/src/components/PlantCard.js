@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
-
+import React, { useState, useContext } from "react";
+import { PlantCardContext } from "../utils/context";
 import styled from "styled-components";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
-import { LoginBox, AppTitle } from "../styled/StyledComponents_LoginForm";
+import { AppTitle } from "../styled/StyledComponents_LoginForm";
 
 const CardStyle = styled.div`
   text-align: center;
@@ -26,79 +26,66 @@ const CardButton = styled.button`
 
 const initialPlant = {
   id: "",
-
   nickName: "",
   species: "",
   h2oFrequency: 0
 };
 
 const PlantCard = props => {
+  const cardContext = useContext(PlantCardContext);
   const [editing, setEditing] = useState(false);
   const [plantToEdit, setPlantToEdit] = useState(initialPlant);
-
+  console.log(cardContext);
   const editPlant = plant => {
     setEditing(true);
     setPlantToEdit(plant);
   };
 
-  useEffect(() => {
-    const plantToUpdate = props.plants.find(
-      plant => `${plant.id}` === plantToEdit.id
-    );
-    if (plantToUpdate) {
-      setPlantToEdit(plantToUpdate);
-    }
-  }, []);
+  // useEffect(() => {
+  //   const plantToUpdate = cardContext.find(
+  //     plant => `${plant.id}` === plantToEdit.id
+  //   );
+  //   if (plantToUpdate) {
+  //     setPlantToEdit(plantToUpdate);
+  //   }
+  // }, []);
 
   const saveEdit = event => {
     event.preventDefault();
     axiosWithAuth()
-      .put(`/api/users/2/plants`, plantToEdit)
+      .put(`/api/plants/`, plantToEdit)
       .then(res => {
         console.log("to edit", res);
-        window.location.reload();
         setEditing(false);
       })
       .catch(err => console.log(err));
   };
 
-  const deletePlant = (e, id) => {
-    e.preventDefault();
-    console.log("delete button is working", id);
-
-    axiosWithAuth()
-      .delete(`/api/users/${props.usersPlant}/plants`)
-      .then(res => {
-        console.log("after deleting", res);
-        const updatedPlants = props.plants.filter(plant => plant.id !== id);
-        props.setPlants(updatedPlants);
-      })
-      .catch(err => {
-        console.log("Error: Delete Request was not returned!", err);
-      });
-  };
-
   return (
     <>
-      <CardStyle key={props.id}>
-        <div className="plant-item" key={props.plant.id}>
-          {/* <h3>{props.plant.nickname}</h3> */}
-          <h3>Species: {props.plant.species}</h3>
-          <h3>Nick Name: {props.plant.nickName}</h3>
-          <h3>Weekly watering: {props.plant.h2oFrequency} </h3>
+      <CardStyle key={cardContext.id}>
+        <div className="plant-item" key={cardContext.id}>
+          {/* <h3>{cardContext.nickname}</h3> */}
+          <h3>Species: {cardContext.species}</h3>
+          <h3>Nick Name: {cardContext.nickName}</h3>
+          <h3>Weekly watering: {cardContext.h2oFrequency} </h3>
           {/* <h3>{props.plant.h2oFrequency}</h3> */}
           {/* <button onClick={edit}>Edit</button> */}
         </div>
         <span>
           ID:
           {""}
-          {props.id}
+          {cardContext.id}
         </span>
         <div className="buttons">
-          <button onClick={e => deletePlant(e, props.plant.id)}>
+          <button
+            onClick={e =>
+              props.deletePlant(e, cardContext.users_plants, cardContext.id)
+            }
+          >
             Delete Plant
           </button>
-          <button key={props.plant.id} onClick={() => editPlant(props.plant)}>
+          <button key={cardContext.id} onClick={() => editPlant(cardContext)}>
             Update Plant
           </button>
         </div>
