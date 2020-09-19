@@ -1,6 +1,6 @@
 # Water My Plants React App
 
-- What problem does this app solve? 
+#### What problem does this app solve? 
 Water My Plants helps busy millennials remember to water their plants 
 
 ## Features
