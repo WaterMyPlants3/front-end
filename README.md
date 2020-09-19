@@ -17,10 +17,9 @@ Water My Plants helps busy millennials remember to water their plants
 ## **Front End Architect**
 
     - Used React, CRA and front end styling platforms including Styled-Components
-    - Useed React Router with protected routes, axios, useState(), useForm() hooks, Yup to validate forms,
-    - Front end is pulling in some data from backend
+    - Used React Router with protected routes, axios, useState(), useForm() hooks, Yup to validate forms
+    - Front end is pulling and sending data backend created with Node.Js and Express
     - User Login/Signup Pages built and ready to handle the token being sent between backend and front end
-    - React app and Backend App talking to one another
     - Users can interact with ALL CRUD operations on the Project data
 
 
