@@ -1,5 +1,7 @@
 # Water My Plants React App
 
+[Deployed Front-end](https://water-my-plants-web26.netlify.app/)
+
 #### What problem does this app solve? 
 Water My Plants helps busy millennials remember to water their plants 
 
